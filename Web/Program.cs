@@ -9,7 +9,6 @@ using Infastructure.Data;
 using Infastructure.Interfaces;
 using Infastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -137,6 +136,8 @@ builder.Services.AddTransient<IKeyboardService, KeyboardService>();
 builder.Services.AddTransient<ILaptopService, LaptopService>();
 builder.Services.AddScoped<IS3Interface, S3Service>();
 
+builder.Services.AddScoped<IUploadImageService, UploadImageService>();
+
 #endregion
 
 
@@ -170,7 +171,7 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
+app.UseStaticFiles();
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 

@@ -27,11 +27,7 @@
 .main-btn{padding:.8rem 1rem;border-radius:8px;border:none;background-color:#ff0096;color:#fff;margin-top:.5rem;transition:.3s}
 .main-btn:hover{border:2px solid #ff0096;background:#fff;color:#ff0096}
 .title-of-brend{align-items:center;margin-top:5rem;margin-bottom:2rem;padding-bottom:3rem;border-bottom:.2rem solid #ccc}
-#brends {
-    display: grid;
-    grid-template-columns: repeat(11,1fr);
-    grid-template-rows: auto;
-}
+#brend{display:flex;align-content:space-around}
 .title-of-brend a{text-decoration:none;color:#000}
 #brends a img{filter:grayscale(100%);transition:.3s;transform:scale(1)}
 #brends a img:hover{filter:grayscale(0%);transform:scale(1.1)}
