@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Laptops";
+    // Layout = null;
 }
 @model IEnumerable<DTOS.LaptopDTOs.LaptopDto>
 
@@ -21,10 +22,11 @@
     <link rel="stylesheet" href="~/css/shared.css" />
     <link rel="stylesheet" href="~/css/laptop.css" />
     <link rel="stylesheet" href="~/css/main.css">
+
 </head>
 <body>
 
-
+    @await Html.PartialAsync("_NavMenu")
     <!-- Site Main header end -->
     <main>
         <div class="container main-container">
@@ -189,8 +191,8 @@
                     <div class="diskount-items">
                         @foreach (var i in Model)
                         {
-                            <a class="discount-item" href="../item.html">
-                                <img src="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")" alt=@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}") />
+                            <a class="discount-item" asp-action="Laptop" asp-controller="Product" asp-route-id="@i.Id">
+                                <img src="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")" alt="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")" />
                                 <p>@i.Name</p>
                                 <span>
                                     <i class="fa-solid fa-star"></i>
@@ -207,6 +209,7 @@
                                 </div>
                             </a>
                         }
+
                     </div>
                 </div>
             </div>

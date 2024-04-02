@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <title> Ноутбуки</title>
+    <meta name="csrf-token" content="Y4g9iQsnHaFDECi9qzS1YY7qVT3TTvTn7pbOYoZu">
+    <script src="https://upg.uz/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://upg.uz/build/js/cart.js?id=f75002199b8dfa8f1c47"></script>
+    <link rel="icon" href="https://upg.uz/images/image/128x128.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://upg.uz/css/bootstrap.css">
+    <link rel="stylesheet" href="https://upg.uz/css/_price-rating-comments.css">
+    <link rel="stylesheet" href="https://upg.uz/css/range.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css"
+        integrity="sha512-40vN6DdyQoxRJCw0klEUwZfTTlcwkOLKpP8K8125hy9iF4fi8gPpWZp60qKC6MYAFaond8yQds7cTMVU8eMbgA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://upg.uz/css/build.css">
+    <link rel="stylesheet" href="https://upg.uz/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="https://upg.uz/css/bootstrap-select.css">
+    <link rel="stylesheet" href="https://upg.uz/css/mneniya_feed.css">
+    <link rel="stylesheet" href="https://upg.uz/css/prettyPhoto.css">
+    <link rel="stylesheet" href="https://upg.uz/css/cloud-zoom.css">
+    <link rel="stylesheet" href="https://upg.uz/css/responsive-tabs.css">
+    <link rel="stylesheet" href="https://upg.uz/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://upg.uz/css/news.css">
+    <link rel="stylesheet" href="https://upg.uz/css/newsprods.css">
+    <link rel="stylesheet" href="https://upg.uz/css/articles.css">
+
+    <link rel="stylesheet" href="https://upg.uz/build/css/styles.css?id=a0944967b9f7af4607ef">
+
+    <!--jQuery-->
+
+    <!--Plugin JavaScript file-->
+
+
+    <style>
+        .modal-wrapper-second {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .modal-wrapper-second .modal-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #33333359;
+        }
+
+        .modal-wrapper-second .modal-container {
+            padding: 0;
+            background-color: white;
+            z-index: 10000;
+            width: 300px;
+        }
+
+        .modal-wrapper-second .modal-container .modal-header {
+            display: flex;
+            justify-content: flex-start;
+            background-color: #ff0096;
+            color: white;
+            position: relative;
+        }
+
+        .modal-wrapper-second .modal-container .modal-header .close-btn {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+        }
+
+        .noUi-connect {
+            background: #ff0096 !important;
+        }
+
+        .tab-ones .active {
+            border: 1px solid #f7f7f7;
+            background-color: #f7f7f7;
+            color: #ff0096;
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+
+</head>
+
+<body class="common-home">
+
+
+    <!-- page loader -->
+    <div class="wrapper-loader">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+
+
+    <!-- FULL CONTENT BODY -->
+    <!-- All headers 1560 -->
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a class="dot" href="#" data-toggle="modal" data-target="#myModal"
+                                id="openModal">Вход/регистрация</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="iconlink" href="https://upg.uz/en/favorites">
+                                <div class="icon-favourite "><span class="icon-count" id="top-wishlist-total">0</span>
+                                </div><span class="link-title hidden-md hidden-sm">Закладки</span>
+                            </a></li>
+                        <li><a class="iconlink" id="compareBtn" style="cursor: pointer">
+                                <div class="icon-compare "><span class="icon-count" id="top-compare-total">0</span>
+                                </div><span class="link-title hidden-md hidden-sm">Сравнение товаров</span>
+                            </a></li>
+                        <li><a class="iconlink " href="/cart-list">
+                                <div class="icon-cart " id="cartContainer"><span class="icon-count counter"
+                                        id="top-shopping-cart-total">0</span></div><span
+                                    class="link-title hidden-md hidden-sm">Корзина</span>
+                            </a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+        <script>
+            $(document).ready(function (e) {
+                let elements = localStorage.getItem('compare_product');
+                let compareProducts = 0;
+                let categoryElements;
+                let elementKeys;
+                if (elements) {
+                    categoryElements = JSON.parse(elements);
+                    console.log(`categoryElements`);
+                    console.log(categoryElements);
+                    elementKeys = Object.keys(categoryElements);
+                    console.log(categoryElements);
+                    console.log(elementKeys);
+                    for (const elementKey in elementKeys) {
+                        const element = categoryElements[elementKeys[elementKey]].split(',');
+                        element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                        compareProducts += element.length;
+                    }
+                } else {
+                    elements = [];
+                }
+                $('#top-compare-total').html(compareProducts);
+
+                $('#compareBtn').click(function (e) {
+                    e.preventDefault();
+                    const categoryId = Object.keys(elements)[0];
+                    console.log('loging in top-header')
+                    elements = localStorage.getItem('compare_product');
+                    let parameter = '';
+                    if (elements) {
+                        categoryElements = JSON.parse(elements);
+                        elementKeys = Object.keys(categoryElements);
+                        parameter = `?categories=${elementKeys}&data=${categoryElements[elementKeys[0]]}`;
+                    }
+                    window.location.href = `https://upg.uz/en/compare${parameter}#`;
+                });
+
+            });
+            $(document).ready(function () {
+                $('#openModal').click(function (e) {
+                    e.preventDefault();
+                    $('#modal').show();
+                });
+                $('#closeModal').click(function (e) {
+                    e.preventDefault();
+                    $('#modal').hide();
+                });
+                $('.close-modal-logout').click(function (e) {
+                    e.preventDefault();
+                    $('#modal').hide();
+                });
+            })
+
+        </script>
+        <div class="container">
+            <div class="row row-logo">
+                <div class="col-lg-16 col-md-17 col-sm-30 col-xs-60 text-center logo-link">
+                    <a href="/" class="" style="display: block;">
+                        <img class="img-responsive img-logo centered" src="https://upg.uz/images/image/upgLogo.png"
+                            alt="" width="100%" height="100%" />
+                    </a>
+                </div>
+                <div class="col-lg-21 col-md-22 col-sm-30 col-xs-60 col-head-box">
+                    <div class="marker-box" style="line-height: 0">
+                        <a href="/contact">Расположение Улица Наваи 37</a><br>
+                        <a href="/contact" style="line-height: 10px;">Расположение Трц. Малика магазин Б-24</a>
+
+                        <span class="header-msub1">
+                            Режим работы: ПН, ВТ, СР, ЧТ, СБ, ВС | с 10:00 - 20:00
+                            <br>
+                            Выходной: ПТ
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-23 col-md-21 col-sm-60 col-xs-60 col-head-box">
+                    <div class="phone-box">
+                        <div class="phone-item">
+                            <span><a href="tel:+998991242424" style="text-decoration:none">(99) 124-24-24</a></span>
+                            <span class="header-msub2">(ул. Навои 37)</span>
+                        </div>
+                        <div class="phone-item">
+                            <span><a href="tel:+998971242424" style="text-decoration:none">(97) 124-24-24</a></span>
+                            <span class="header-msub2">(Трц. Малика B24)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-search">
+                <div class="col-lg-15 col-md-15 col-sm-20 col-xs-60 col-menu">
+                    <div class="row">
+                        <div class="col-xs-60 hide-menu">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-success btn-custom btn-custom-1"
+                                        id="btn-hide-menu">Каталог<span class="menu-arrow-down"
+                                            id="btn-hide-menu-arrow"></span></button>
+                                    <ul class="mn-vnavigation" id="top-navigation" style="display: none;">
+                                        <li class="dropdown-submenu">
+                                            <a href="/specials" class="parent">
+                                                <img class="catalog-icon" src="/images/stock.png">
+                                                <span>Акционные товары</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-sborki"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/20/original/I8YhtDk8EGne6DhdWeJGE0TrJRG4NTGQAQgcYLXD.png">
+                                                Игровые Сборки </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-noutbuki"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/18/original/5kPmC3TJUlrjCRwjgN0qgwPLpWXrSvRqNaICbahI.png">
+                                                Ноутбуки </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-klaviaturi"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/6/original/XA9jJaGc2n5jZI59VEqX56cuMKbR26xlkumhfwuB.png">
+                                                Клавиатуры </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-mouses"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/1/original/ClVCWXWlYzbSJfe9ntj0idV1TDx377oHx86ScpDE.png">
+                                                Мышки </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-naushniki"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/5/original/d9I688kCoxpZ2mlRhxKFYFxlnHi7IrtiKeo1BBOQ.png">
+                                                Наушники </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-mikrofoni"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/4/original/xlHL5OX68DV7E5dceXXY9aRCDDpK0iq3GLc250bR.png">
+                                                Микрофоны </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-kovrik"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/7/original/EN2FfWb0AyLw3u4EEaxC4YLPMZboJmmYG1mOfpN0.jpg">
+                                                Коврики для мыши </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-akssesuari"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/8/original/VadcrJsqiLz8kLU6QXd3NrIWz9skO9HqWzAmv2gz.png">
+                                                Аксессуары </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-dekor"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/48/original/I7RUBYI5SRCYQ74Tcdmvl9eOkjYJbNXaOQC70pzC.png">
+                                                Декор </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-complekt"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/10/original/xoR1asP3svzpJkHjzt0ak1c8YJFZdbqeo5EeSylu.png">
+                                                Комплекты </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-displays"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/16/original/zqinDL2blKzyi1hKHZc7bjaa47wWaBTX5weF37Nu.png">
+                                                Мониторы </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1"
+                                                href="https://upg.uz/en/categories/category-storage-devices"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/23/original/ekFcdz4ptTSEI7WHAUCnRQDji9hI1KYPt42uRIAh.png">
+                                                Накопители </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-rams"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/24/original/PPnmwAwixtZlWMzILfqOo8aVXFxkwDUlP8gi6Rez.png">
+                                                ОЗУ </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-ups"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/49/original/ZxAm4LRIFFQq2kALK03yLK0Zs4JKDkyDr0zTyx0r.png">
+                                                UPS </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-bp"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/47/original/nvB5YiCzARiogKii62ozj9JT2FRmUrZdsFZIalg5.png">
+                                                Блоки питания </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-kolonki"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/13/original/xgQKYM19GYo0bZxcZcosGIGIrrsEKhuoyvKDmWhu.png">
+                                                Колонки </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-veb-kamera"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/12/original/vHTy1p93afSz7YWwEtVQcocnhJ9O91Gn7M7EYBPe.png">
+                                                Веб-Камеры </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-striming"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/3/original/K2yXJ5pWp4bZL8uLm01PjN68rkJ2yvy1Lz3sDqK7.png">
+                                                Карты Захвата </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-apple"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/46/original/YDLt8UdjcWcp56OYjx3JOKEIqTtXD3xD6fiAqooY.png">
+                                                Продукция Apple </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/igrovoyi-konsoli"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/26/original/pWPl4NOSA8IqeWOGdyAOkyebkXVV3JwbGIhoDlu6.png">
+                                                Игровые консоли </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1"
+                                                href="https://upg.uz/en/categories/kategory-geympadi-igrovai"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/11/original/KJ87wGwc922s2bvKiUFUF0EtKYSgp6TytQsYnYTK.png">
+                                                Игровые геймпады </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-ochki"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/9/original/jHBuspaT1OZfpnUhEZdBfSGFxgsH1bWBYH502JJV.png">
+                                                Очки для геймеров </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-wi-fi-roter"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/17/original/XQGWDdWvqxKY72v68oAP32w8fl8WMByzXeMqFi5y.png">
+                                                Wi-Fi Роутеры </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-cronshteyni"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/25/original/mXILQW2LGkZCubFAvUSuLPE9kDyrasOnmI9V0ILU.png">
+                                                Кронштейны </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-coolers"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/22/original/w9vLhnGIpo1rLTu8Mdy0bYDXCEVo1InT1WoD8phI.png">
+                                                Кулера </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/category-case"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/19/original/ndp71MvfsLPxnbmhq0SS4qWDSfkcaIu0GZCb1s1t.png">
+                                                Корпуса </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/kategory-kresla"
+                                                class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/14/original/w0QtYaEkocyKm7R9zaTZi24FaVBiIU2ii495WaWs.png">
+                                                Кресла </a>
+
+                                        </li>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="https://upg.uz/en/categories/stoly" class="parent">
+                                                <img class="catalog-icon"
+                                                    src="https://upg.uz/storage/files/categories/27/original/caZDCrvFxGauDtr93yF8nSgi19pGpiUTEZyhtU34.png">
+                                                Столы для геймеров </a>
+
+                                        </li>
+
+                                    </ul>
+                                </div><!-- /btn-group -->
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-xs-12 -->
+                    </div><!-- /.row -->
+                </div>
+                <div class="col-lg-45 col-md-45 col-sm-40 col-xs-60" style="margin-top: 15px">
+                    <div class="row">
+                        <div class="col-xs-60">
+                            <form action="/search" class="input-group input-group-lg" id="search-form" method="GET">
+                                <input type="text" name="name" value="" class="form-control search-input"
+                                    placeholder="Найти, например, HyperX Cloud Alpha" id="search-input"
+                                    autocomplete="off" />
+                                <div class="dropdown-menu" style="top: 40px; left: 0px; display: none;" id="droping">
+
+                                </div>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-success btn-custom">Найти</button>
+                                </div><!-- /btn-group -->
+                            </form><!-- /input-group -->
+
+                        </div><!-- /.col-xs-12 -->
+                    </div><!-- /.row -->
+                </div>
+            </div>
+            <script>
+                $('#btn-hide-menu').click(function (e) {
+                    e.preventDefault();
+                    $('#top-navigation').toggle();
+                })
+                $('.menu-arrow').click(function (e) {
+                    e.stopPropagation();
+                    let element = $(this);
+                    $('.dropdown-menu').hide()
+                    element.siblings('.dropdown-menu').toggle();
+                });
+                $('.dropdown-menu').click(function (e) {
+                    e.stopPropagation();
+                })
+                $(document).click(function (e) {
+                    $('.dropdown-menu').hide()
+                    console.log('clicking')
+                })
+                $('.item-carousel-id').click(function (e) {
+                    e.stopPropagation();
+                })
+            </script>
+        </div>
+    </header>
+
+
+    <section class="product-category">
+        <div class="container theme-showcase main-container" role="main">
+            <div class="row">
+                <div class="col-lg-15 col-md-15 col-sm-20 col-xs-60">
+                    <div id="column-left">
+                        <div class="col-filter">
+                            <form href="?" id="catalog-filter-form">
+                                <div class="col-filter-div-header header-filter">
+                                    <a class="header-filterr" id="collapseExamplee" role="button">Фильтр</a>
+                                </div>
+                                <div class="" id="">
+                                    <div class="filter-hidden">
+                                        <div class="col-filter-div">
+                                            <div class="header-sub-filter" style="padding: 0">Бренды</div>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="styled brands-checkbox" id="brands-checkbox-0"
+                                                    type="checkbox" value="acer">
+                                                <label for="brands-checkbox-0">Acer</label>
+                                            </div>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="styled brands-checkbox" id="brands-checkbox-1"
+                                                    type="checkbox" value="brand-asus">
+                                                <label for="brands-checkbox-1">Asus</label>
+                                            </div>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="styled brands-checkbox" id="brands-checkbox-2"
+                                                    type="checkbox" value="lenovo">
+                                                <label for="brands-checkbox-2">Lenovo</label>
+                                            </div>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="styled brands-checkbox" id="brands-checkbox-3"
+                                                    type="checkbox" value="rog">
+                                                <label for="brands-checkbox-3">Rog</label>
+                                            </div>
+                                            <input type="hidden" name="brands" id="brands-hidden-input">
+                                        </div>
+
+                                        <div id="slider-non-linear-step" style="
+    width: 80%;
+    margin-left: 30px;
+"></div>
+                                        <div id="slider-non-linear-step-value"></div>
+
+                                        <input type="hidden" id="min" name="price-min" />
+                                        <input type="hidden" id="max" name="price-max" />
+                                        <script>
+                                            var slider = document.getElementById('slider-non-linear-step');
+
+                                            noUiSlider.create(slider, {
+                                                start: [parseInt('13771000') - 100000,
+                                                parseInt('44450000') + 100000],
+                                                connect: true,
+                                                range: {
+                                                    'min': parseInt('13771000') - 1,
+                                                    'max': parseInt('44450000') + 100000
+                                                }
+                                            });
+                                            var nonLinearStepSliderValueElement = document.getElementById('slider-non-linear-step-value');
+
+                                            slider.noUiSlider.on('update', function (values) {
+                                                // console.log(values);
+                                                values[0] = number_format(Math.round(values[0]), 0, '.', ' ')
+                                                values[1] = number_format(Math.round(values[1]), 0, '.', ' ')
+                                                // console.log(values)''
+
+                                                nonLinearStepSliderValueElement.innerHTML = values.join(' - ');
+                                                let u = nonLinearStepSliderValueElement.innerHTML;
+                                                u = u.split('-');
+                                                $('#min').val(u[0].replace(/\s/g, ''))
+                                                $('#max').val(u[1].replace(/\s/g, ''))
+                                            });
+                                            function number_format(number, decimals, dec_point, thousands_point) {
+
+                                                if (number == null || !isFinite(number)) {
+                                                    throw new TypeError("number is not valid");
+                                                }
+
+                                                if (!decimals) {
+                                                    var len = number.toString().split('.').length;
+                                                    decimals = len > 1 ? len : 0;
+                                                }
+
+                                                if (!dec_point) {
+                                                    dec_point = '.';
+                                                }
+
+                                                if (!thousands_point) {
+                                                    thousands_point = ',';
+                                                }
+
+                                                number = parseFloat(number).toFixed(decimals);
+
+                                                number = number.replace(".", dec_point);
+
+                                                var splitNum = number.split(dec_point);
+                                                splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+                                                number = splitNum.join(dec_point);
+
+                                                return number;
+                                            }
+                                        </script>
+
+                                        <div id="catalog-characteristics">
+                                            <div class="header-sub-filter">Процессор</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-0" id="characteristics-0">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="AMD Ryzen 5 6600H">AMD Ryzen 5 6600H</option>
+                                                    <option value="AMD Ryzen 9 5900HX">AMD Ryzen 9 5900HX</option>
+                                                    <option value="Intel Core i7-11800H">Intel Core i7-11800H</option>
+                                                    <option value="Intel Core i7-12700H">Intel Core i7-12700H</option>
+                                                    <option value="Intel Core i9-12950HX">Intel Core i9-12950HX</option>
+                                                    <option value="Intel Core i9-13900H">Intel Core i9-13900H</option>
+                                                    <option value="Intel Core i9-13980HX">Intel Core i9-13980HX</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[107]"
+                                                id="characteristics-0-hidden-input">
+                                            <div class="header-sub-filter">Хранилище</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-1" id="characteristics-1">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="1TB M.2 NVMe PCIe 3.0">1TB M.2 NVMe PCIe 3.0</option>
+                                                    <option value="1TB M.2 NVMe PCIe 4.0">1TB M.2 NVMe PCIe 4.0</option>
+                                                    <option value="2TB M.2 NVMe PCIe 4.0">2TB M.2 NVMe PCIe 4.0</option>
+                                                    <option value="512GB NVMe SSD Gen3x4">512GB NVMe SSD Gen3x4</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[105]"
+                                                id="characteristics-1-hidden-input">
+                                            <div class="header-sub-filter">Оперативная память</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-2" id="characteristics-2">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="DDR4 16GB 3200 (2x8)">DDR4 16GB 3200 (2x8)</option>
+                                                    <option value="DDR4 1x8GB (8GB) 3200">DDR4 1x8GB (8GB) 3200</option>
+                                                    <option value="DDR5 1x32GB (32GB) 4800">DDR5 1x32GB (32GB) 4800
+                                                    </option>
+                                                    <option value="DDR5 2x16GB (32GB) 4800">DDR5 2x16GB (32GB) 4800
+                                                    </option>
+                                                    <option value="DDR5 2x8GB (16GB) 4800">DDR5 2x8GB (16GB) 4800
+                                                    </option>
+                                                    <option value="LPDDR4 32GB 3200">LPDDR4 32GB 3200</option>
+                                                    <option value="LPDDR5 16GB">LPDDR5 16GB</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[106]"
+                                                id="characteristics-2-hidden-input">
+                                            <div class="header-sub-filter">Видеокарта</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-3" id="characteristics-3">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="RTX 3050 GDDR6 4GB">RTX 3050 GDDR6 4GB</option>
+                                                    <option value="RTX 3060 GDDR6 6GB Laptop">RTX 3060 GDDR6 6GB Laptop
+                                                    </option>
+                                                    <option value="RTX 3070 Ti GDDR6 8GB">RTX 3070 Ti GDDR6 8GB</option>
+                                                    <option value="RTX 3080 Ti GDDR6 16GB">RTX 3080 Ti GDDR6 16GB
+                                                    </option>
+                                                    <option value="RTX 4070 GDDR6 8GB">RTX 4070 GDDR6 8GB</option>
+                                                    <option value="RTX 4090 GDDR6 16GB">RTX 4090 GDDR6 16GB</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[104]"
+                                                id="characteristics-3-hidden-input">
+                                            <div class="header-sub-filter">Экран</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-4" id="characteristics-4">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="15.6 FHD (1920x1080), 144hz IPS">15.6 FHD
+                                                        (1920x1080), 144hz IPS</option>
+                                                    <option value="16 QHD+ (2560x1600), 240hz">16 QHD+ (2560x1600),
+                                                        240hz</option>
+                                                    <option value="16 UHD (3840 x 2400), 60hz OLED">16 UHD (3840 x
+                                                        2400), 60hz OLED</option>
+                                                    <option value="16 WQXGA (2560x1600), 120hz IPS">16 WQXGA
+                                                        (2560x1600), 120hz IPS</option>
+                                                    <option value="17.3 WQHD (2560x1440), 240hz IPS">17.3 WQHD
+                                                        (2560x1440), 240hz IPS</option>
+                                                    <option value="18 QHD+ (2560x1600), 240hz IPS">18 QHD+ (2560x1600),
+                                                        240hz IPS</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[103]"
+                                                id="characteristics-4-hidden-input">
+                                            <div class="header-sub-filter">Wi-Fi</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-5" id="characteristics-5">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="Wi-Fi 6E(802.11ax)">Wi-Fi 6E(802.11ax)</option>
+                                                    <option value="Wi-Fi 6E(802.11ax) (Triple band) 2*2 + Bluetooth">
+                                                        Wi-Fi 6E(802.11ax) (Triple band) 2*2 + Bluetooth</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[124]"
+                                                id="characteristics-5-hidden-input">
+                                            <div class="header-sub-filter">RTX/AMD</div>
+                                            <div class="col-filter-div">
+                                                <select class="characteristics-6" id="characteristics-6">
+                                                    <option value="">Выберите из списка</option>
+                                                    <option value="RTX">RTX</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="characteristics[193]"
+                                                id="characteristics-6-hidden-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="order">
+                                <input type="hidden" id="counting">
+                                <button id="filter-clear" class="btn btn-default btn-filter">Сбросить фильтр</button>
+                                <input type="submit" value="Применить фильтр" id="catalog-filter-submit"
+                                    class="btn btn-default btn-filter" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-45 col-md-45 col-sm-40 col-xs-60 col-content" id="content">
+                    <div class="row">
+                        <div class="col-lg-60 col-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                            <ol class="breadcrumb mt-1">
+                                <li class="breadcrumb-item"><a href="https://upg.uz/en">Home</a></li>
+                                <li class="breadcrumb-item active">Ноутбуки</li>
+                            </ol>
+                        </div>
+                        <div class="col-lg-60 col-xs-60">
+                            <h1 class="nomargin">Ноутбуки</h1>
+                        </div>
+                        <div class="col-lg-60 col-xs-60">
+                            <img class="img-responsive"
+                                src="https://upg.uz/storage/files/categories/18/thumbs/Zpyj9YW8UVTVJB0iHxdlBufU7W4vme6GBdOb1Hvu.png"
+                                alt="Манипуляторы и аксессуары" />
+                        </div>
+                        <div class="col-lg-60 col-xs-60">
+                            <div class="col-center-filter">
+                                <div class="row">
+                                    <form id="category-order-form">
+                                        <div class="col-lg-25 col-md-23 col-sm-60 col-xs-60 col-center-filter-item">
+                                            <label for="order">Сортировка</label>
+                                            <select onchange="categoryFormSubmit()" data-width="auto" name="order"
+                                                id="category-order">
+                                                <option value="" selected>По
+                                                    умолчанию
+                                                </option>
+                                                <option value="ASC">
+                                                    Наименование (А -&gt; Я)
+                                                </option>
+                                                <option value="DESC">
+                                                    Наименование (Я -&gt; А)
+                                                </option>
+                                                <option value="ASC_price">
+                                                    Цена (по возрастанию)
+                                                </option>
+                                                <option value="DESC_price">
+                                                    Цена (по убыванию)
+                                                </option>
+                                                <option value="DESC_rating">
+                                                    Рейтинг (по убыванию)
+                                                </option>
+                                                <option value="ASC_rating">
+                                                    Рейтинг (по возрастанию)
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-18 col-md-18 col-sm-60 col-xs-60 col-center-filter-item">
+                                            <div class="category-products-count-filter">
+                                                <label>Товаров на странице</label>
+                                                <select onchange="categoryFormSubmit()" name="counting"
+                                                    data-width="auto" id="category-counting">
+                                                    <option value="20">20
+                                                    </option>
+                                                    <option value="30">30
+                                                    </option>
+                                                    <option value="40" selected>40
+                                                    </option>
+                                                    <option value="50">50
+                                                    </option>
+                                                    <option value="60">60
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row-viewed col-catalog-grid product-grid">
+                                <div class="col-lg-12 col-md-15 col-sm-20 col-xs-30 item-product">
+                                    <div class="item-product-inner">
+                                        <a href="https://upg.uz/en/products/g733cw-ll019w" class="item-link">
+
+                                            <img class="item-product-img center-block"
+                                                src="https://upg.uz/storage/files/products/1779/thumbs/MffLJFCw7auPbUEaLQOmFTIwM4Vs4D3Y26VJtaeR.jpg"
+                                                alt="">
+                                            ASUS ROG Strix SCAR 17 SE G733CW-LL019W Off Black Stealth ® ``
+                                        </a>
+                                        <div class="product-mini-rating">
+                                            <div class="mp-small_rate" mp-prod_id="">
+                                                <div class="mp-rating-value-wrap">
+                                                    <div class="mp-rating-value">
+                                                        <div style="width:0%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <span class="item-price price-old">35 820 000 сум</span>
+
+                                        <span class="item-price price-new">27 940 000 сум</span>
+
+                                        <div class="item-buttons center-block">
+                                            <a class="item-buy-btn cart" role="button" onclick="addToCart('1779');"
+                                                id="cartActive1779" data-id="c1779"
+                                                data-productname="ASUS ROG Strix SCAR 17 SE G733CW-LL019W Off Black Stealth ® ``"
+                                                data-productslug="g733cw-ll019w">Купить</a>
+                                            <a class="item-compare-btn libra" role="button"
+                                                onclick="addToCompare(1779, 18, 'g733cw-ll019w', 'ASUS ROG Strix SCAR 17 SE G733CW-LL019W Off Black Stealth ® ``')"
+                                                data-id="1779"></a>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        localStorage.getItem('compare_product').split(',').forEach(el => {
+                                            if (el === "1779") {
+                                                $(`[data-id="l${el}"]`).addClass('selected_libra');
+                                            }
+                                        })
+                                        if (JSON.parse(localStorage.getItem('product_id')) != null) {
+                                            JSON.parse(localStorage.getItem('product_id')).forEach(el => {
+                                                if (el.product_id === "1779") {
+                                                    $(`[data-id="c${el.product_id}"]`).addClass('selected_cart');
+                                                }
+                                            })
+                                        }
+
+                                    </script>
+                                </div>
+                                <script>
+                                    function showModal(productId, productSlug, productName) {
+                                        $(`[data-id="l${productId}"]`).addClass('active');
+                                        const elements = localStorage.getItem('compare_product');
+                                        const categoryElements = JSON.parse(elements);
+                                        const elementKeys = Object.keys(categoryElements);
+                                        const parameter = `?categories=${elementKeys}&data=${categoryElements[elementKeys[0]]}`;
+                                        $('#modalNew').show();
+                                        $('#informModalCartCompare').html(`<div>Товар <a href="/products/${productId}">${productName}</a> добавлен в <a id="compareBtn" href="https://upg.uz/en/compare${parameter}#">список сравнения товаров</a>!</div>`);
+                                    }
+
+                                    function getProductLength() {
+                                        let elements = localStorage.getItem('compare_product');
+                                        let categoryElements = JSON.parse(elements);
+                                        let compareProducts = 0;
+                                        if (elements) {
+                                            const elementKeys = Object.keys(categoryElements);
+                                            for (const elementKey in elementKeys) {
+                                                const element = categoryElements[elementKeys[elementKey]].split(',');
+                                                element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                                compareProducts += element.length;
+                                            }
+                                        }
+
+                                        return compareProducts;
+                                    }
+
+                                    function addToCompare(productId, categoryId, productSlug, productName) {
+                                        const compareProducts = localStorage.getItem('compare_product');
+                                        if (compareProducts) {
+                                            let compare_products = '';
+                                            let exist = false;
+                                            let cart_product_check = [];
+                                            let productIds = JSON.parse(localStorage.getItem('compare_product'));
+
+                                            if (productIds[categoryId]) {
+                                                console.log('category exists');
+                                                console.log(productIds[categoryId]);
+                                                cart_product_check = productIds[categoryId].split(',');
+
+                                                for (let i = 0; i <= cart_product_check.length; i++) {
+                                                    if (parseInt(cart_product_check[i]) === productId) {
+                                                        console.log('exists')
+                                                        exist = true;
+                                                    }
+                                                }
+                                            }
+
+                                            if (!exist) {
+                                                console.log('workng not exist')
+                                                if (cart_product_check.length < 1) {
+                                                    productIds[categoryId] = `${productId},`;
+                                                    localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                                    let containerCounter = $('#top-compare-total');
+                                                    containerCounter.text(getProductLength());
+                                                    showModal(productId, productSlug, productName);
+                                                    $(`#l${productId}`).addClass('active');
+
+                                                } else if (cart_product_check.length <= 3 && cart_product_check.length >= 1) {
+                                                    $.ajax({
+                                                        url: '/check-compare/' + productId + '/' + cart_product_check[0],
+                                                        method: 'GET',
+                                                        success: function (data) {
+                                                            if (data.message === 'success') {
+                                                                compare_products = productIds[categoryId];
+                                                                compare_products += `${productId},`;
+                                                                productIds[categoryId] = compare_products;
+                                                                localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                                                let containerCounter = $('#top-compare-total');
+                                                                containerCounter.text(getProductLength());
+                                                                showModal(productId, productSlug, productName);
+                                                            } else {
+                                                                alert('For comparing products categories must be the same')
+                                                                $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                                            }
+                                                        }, error: function (data) {
+                                                            // console.log(data);
+                                                        }
+                                                    });
+                                                } else {
+                                                    alert('You can compare only 3 products')
+                                                    $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                                }
+
+                                            } else {
+                                                showModal(productId, productSlug, productName);
+                                            }
+                                        } else {
+                                            localStorage.setItem('compare_product', JSON.stringify({ [categoryId]: `${productId},` }));
+                                            showModal(productId, productSlug, productName);
+                                        }
+                                        calculateCompareProductsCount();
+                                    }
+
+                                    function calculateCompareProductsCount() {
+                                        let compareProducts = 0;
+                                        const data = localStorage.getItem('compare_product');
+                                        const categoryElements = JSON.parse(data);
+                                        elementKeys = Object.keys(categoryElements);
+                                        for (const elementKey in elementKeys) {
+                                            const element = categoryElements[elementKeys[elementKey]].split(',');
+                                            element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                            compareProducts += element.length;
+                                        }
+                                        $('#top-compare-total').html(compareProducts);
+                                    }
+                                </script>
+                                
+                            </div>
+                            <div class="col-lg-60 col-xs-60">
+                                <div class="row row-brands">
+                                    <div class="col-lg-60 col-brands">
+                                        <a target="_blank" class="item-brand" href="https://www.1stplayer.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/1stplayer.png"
+                                                 alt="https://www.1stplayer.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://2egaming.com/en/">
+                                            <img width="100"
+                                                 src="~/images/Brend/2egaming.png"
+                                                 alt="https://2egaming.com/en/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.acer.com/ru-ru">
+                                            <img width="100"
+                                                 src="~/images/Brend/acer.png"
+                                                 alt="https://www.acer.com/ru-ru" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.ocpcgaming.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/acpc.png"
+                                                 alt="https://www.ocpcgaming.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://aerocool.io/ru/">
+                                            <img width="100"
+                                                 src="~/images/Brend/aerocool.png"
+                                                 alt="https://aerocool.io/ru/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="http://www.aigo.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/aigo.png"
+                                                 alt="http://www.aigo.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://en.akkogear.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/akko.png"
+                                                 alt="https://en.akkogear.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://us.dahuasecurity.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/alhua.png"
+                                                 alt="https://us.dahuasecurity.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.alseyecorp.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/alseye.png"
+                                                 alt="https://www.alseyecorp.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://anbernic.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/anbernic.png"
+                                                 alt="https://anbernic.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.andaseat.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/andaseat.png"
+                                                 alt="https://www.andaseat.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.antec.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/antec.png"
+                                                 alt="https://www.antec.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.apple.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/apple.png"
+                                                 alt="https://www.apple.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.asus.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/asus.png"
+                                                 alt="https://www.asus.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="http://microlab.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/microlab.png"
+                                                 alt="http://microlab.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="http://immer.uz/">
+                                            <img width="100"
+                                                 src="~/images/Brend/immer.png"
+                                                 alt="http://immer.uz/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.benq.com/ru-ru/index.html">
+                                            <img width="100"
+                                                 src="~/images/Brend/benq.png"
+                                                 alt="https://www.benq.com/ru-ru/index.html" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://ziffler.uz/">
+                                            <img width="100"
+                                                 src="~/images/Brend/ziffler.png"
+                                                 alt="https://ziffler.uz/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://bloodyusa.ecwid.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/bloody.png"
+                                                 alt="https://bloodyusa.ecwid.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://ru.canyon.eu/">
+                                            <img width="100"
+                                                 src="~/images/Brend/canyon.png"
+                                                 alt="https://ru.canyon.eu/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.coolermaster.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/coolermaster.png"
+                                                 alt="https://www.coolermaster.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.corsair.com/us/en">
+                                            <img width="100"
+                                                 src="~/images/Brend/corsair.png"
+                                                 alt="https://www.corsair.com/us/en" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.crucial.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/crucial.png"
+                                                 alt="https://www.crucial.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.kingston.com/ru">
+                                            <img width="100"
+                                                 src="~/images/Brend/kingston.png"
+                                                 alt="https://www.kingston.com/ru" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.deepcool.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/deepcool.png "
+                                                 alt="https://www.deepcool.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.dell.com/en-uk">
+                                            <img width="100"
+                                                 src="~/images/Brend/dell.png"
+                                                 alt="https://www.dell.com/en-uk" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.kzzistore.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/kzzi.png"
+                                                 alt="https://www.kzzistore.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.duckychannel.com.tw/en">
+                                            <img width="100"
+                                                 src="~/images/Brend/ducky.png"
+                                                 alt="https://www.duckychannel.com.tw/en" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.lenovo.com.cn/">
+                                            <img width="100"
+                                                 src="~/images/Brend/lenovo.png"
+                                                 alt="https://www.lenovo.com.cn/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.lg.com/ru">
+                                            <img width="100"
+                                                 src="~/images/Brend/lg.png"
+                                                 alt="https://www.lg.com/ru" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://lian-li.com/ru/">
+                                            <img width="100"
+                                                 src="~/images/Brend/lianli.png"
+                                                 alt="https://lian-li.com/ru/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://aoc.com/us">
+                                            <img width="100"
+                                                 src="~/images/Brend/loc.png"
+                                                 alt="https://aoc.com/us" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.logitech.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/logitech.png"
+                                                 alt="https://www.logitech.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://about.meta.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/meta.png"
+                                                 alt="https://about.meta.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.mi.com/global/">
+                                            <img width="100"
+                                                 src="~/images/Brend/mi.png"
+                                                 alt="https://www.mi.com/global/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.msi.com/index.php">
+                                            <img width="100"
+                                                 src="~/images/Brend/msi.png"
+                                                 alt="https://www.msi.com/index.php" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.nintendo.com/us/">
+                                            <img width="100"
+                                                 src="~/images/Brend/nintendo.png"
+                                                 alt="https://www.nintendo.com/us/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.playstation.com/ru-ua/">
+                                            <img width="100"
+                                                 src="~/images/Brend/playstation.png"
+                                                 alt="https://www.playstation.com/ru-ua/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.rampage.com.tr/en/">
+                                            <img width="100" src="~/images/Brend/rampage.png" alt="" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://www.vivo.com/en">
+                                            <img width="100" src="~/images/Brend/vivo.png" alt="" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://varmilo.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/varmilo.png"
+                                                 alt="https://varmilo.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand"
+                                           href="https://www.asus.com/ru/laptops/for-gaming/tuf-gaming/">
+                                            <img width="100"
+                                                 src="~/images/Brend/tufgaming.png"
+                                                 alt="https://www.asus.com/ru/laptops/for-gaming/tuf-gaming/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://ca.hyperx.com/">
+                                            <img width="100"
+                                                 src="~/images/Brend/hyperX.png"
+                                                 alt="https://ca.hyperx.com/" />
+                                        </a>
+                                        <a target="_blank" class="item-brand" href="https://steelseries.com/" >
+                                            <img width="100"
+                                                 src="~/images/Brend/steelserias.png"
+                                                 alt="https://steelseries.com/" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+        $('#order').val($('select[name="order"]'));
+        $('#counting').val($('select[name="counting"]'));
+        var $range = $(".js-range-slider"),
+            $inputFrom = $(".js-input-from"),
+            $inputTo = $(".js-input-to"),
+            instance,
+            min = 0,
+            max = 1000,
+            from = 0,
+            to = 0;
+
+        $range.ionRangeSlider({
+            skin: "round",
+            type: "double",
+            min: min,
+            max: max,
+            from: 200,
+            to: 800,
+            onStart: updateInputs,
+            onChange: updateInputs
+        });
+        instance = $range.data("ionRangeSlider");
+
+        function updateInputs(data) {
+            from = data.from;
+            to = data.to;
+
+            $inputFrom.prop("value", from);
+            $inputTo.prop("value", to);
+        }
+
+        $inputFrom.on("input", function () {
+            var val = $(this).prop("value");
+
+            // validate
+            if (val < min) {
+                val = min;
+            } else if (val > to) {
+                val = to;
+            }
+
+            instance.update({
+                from: val
+            });
+        });
+
+        $inputTo.on("input", function () {
+            var val = $(this).prop("value");
+
+            // validate
+            if (val < from) {
+                val = from;
+            } else if (val > max) {
+                val = max;
+            }
+
+            instance.update({
+                to: val
+            });
+        });
+
+        $('#catalog-filter-form').submit(function (event) {
+            event.preventDefault();
+            const form = $('#catalog-filter-form');
+
+            const orderValue = '';
+            if (orderValue) {
+                form.append(`<input type="hidden" name="order" value="${orderValue ? orderValue : ''}">`);
+            }
+
+            const countingValue = '';
+            if (countingValue) {
+                form.append(`<input type="hidden" name="counting" value="${countingValue ? countingValue : ''}">`);
+            }
+
+            this.submit();
+        });
+
+        function categoryFormSubmit() {
+            const orderForm = $('#category-order-form');
+            const brandsValue = '';
+            if (brandsValue) {
+                orderForm.append(`<input type="hidden" name="brands" value="${brandsValue ? brandsValue : ''}">`);
+            }
+
+            const priceMinValue = '';
+            if (priceMinValue) {
+                orderForm.append(`<input type="hidden" name="price-min" value="${priceMinValue ? priceMinValue : ''}">`);
+            }
+
+            const priceMaxValue = '';
+            if (priceMaxValue) {
+                orderForm.append(`<input type="hidden" name="price-max" value="${priceMaxValue ? priceMaxValue : ''}">`);
+            }
+
+            const characteristics = null;
+            if (characteristics) {
+                const characteristicIds = Object.keys(characteristics);
+                for (let i = 0; i < characteristicIds.length; i++) {
+                    const value = characteristics[characteristicIds[i]];
+                    orderForm.append(`<input type="hidden" name="characteristics[${characteristicIds[i]}]" value="${value ? value : ''}">`);
+                }
+            }
+
+            orderForm.submit();
+        }
+
+        function getFormData($form) {
+            let unindexed_array = $form.serializeArray();
+            let indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+        $('.header-filterr').click(function () {
+            $('.filter-hidden').slideToggle(300);//
+            console.log('collapse');
+        });
+    </script>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-20 col-link">
+                    <p>Информация</p>
+                    <a href="/contact" class="">О компании</a>
+                    <a href="/contact" class="">Контактная информация</a>
+
+
+
+                    <a href="/contact" class="">Наши магазины</a>
+
+                </div>
+                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-20 col-link">
+                    <p>Поддержка</p>
+                    <a href="/contact" class="">Сервисные центры</a>
+
+                </div>
+                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-20 col-link">
+                    <p>Покупателям</p>
+
+                    <a href="/specials" class="">Акции</a>
+                </div>
+
+                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-20 col-link">
+                    <p>Мы принимаем к оплате</p>
+                    <ul style="padding: 0; margin: 0;
+    color: #fff;
+    font-size: 14px;
+    ">
+                        <li style="margin-top: 8px;">Наличные</li>
+                        <li style="margin-top: 8px;">PayMe</li>
+                        <li style="margin-top: 8px;">Click</li>
+                        <li style="margin-top: 8px;">UzCard</li>
+                        <li style="margin-top: 8px;">Apelsin</li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-20 col-md-12 col-sm-12 col-xs-20 col-link">
+                    <p>Мы в социальных сетях</p>
+
+                    <a href="https://www.instagram.com/upguz/" target="_blank" class="social-ins"></a>
+                    <a href="https://www.youtube.com/channel/UCucATMjFOFH5ZaYG7e0lCgg" target="_blank"
+                        class="social-yo"></a>
+                    <a href="https://t.me/UPGuz" target="_blank" class="social-tg"></a>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-40 col-md-36 col-sm-60 col-xs-60 col-link">
+
+
+
+
+
+
+
+
+                </div>
+                <div class="col-lg-11 col-md-13 col-sm-36 col-xs-30 col-link">
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+
+        let filterSubmitButton = $('#catalog-filter-submit');
+        let filterForm = $('#catalog-filter-form');
+        let catalogCharacteristics = $('#catalog-characteristics');
+
+        $(document).ready(function (e) {
+            filterSubmitButton.click(function (e) {
+                e.preventDefault();
+
+                let brands = getFilter('brands-checkbox');
+                // let characteristics = getDropdownFilter('catalog-characteristics');
+
+                let brandsInput = $('#brands-hidden-input');
+                // let characteristicsInput = $('characteristics-hidden-input');
+                // console.log(characteristics);
+
+                let i = 0;
+                while ($(`.characteristics-${i}`).length) {
+                    const characteristicsInput = $(`#characteristics-${i}-hidden-input`);
+                    const characteristic = $('.characteristics-' + i).children('option:selected').val()
+                    if (characteristic) {
+                        characteristicsInput.val(characteristic);
+                    }
+                    // const characteristics = getDropdownFilter('characteristics-' + i);
+                    // console.log(characteristic);
+                    i++;
+                }
+
+                // characteristicsInput.val(characteristics);
+
+                brandsInput.val(brands);
+
+                filterForm.submit();
+            });
+        });
+
+        function getDropdownFilter(className) {
+            let filter = '';
+            $('select.' + className).each(function () {
+                filter += $(this).children('option:selected').val() + ',';
+                // filter.push($(this).val());
+            });
+            return filter.slice(0, -1);
+        }
+
+        function getFilter(className) {
+            let filter = '';
+            $('.' + className + ':checked').each(function () {
+                filter += $(this).val() + ',';
+                // filter.push($(this).val());
+            });
+            return filter.slice(0, -1);
+        }
+    </script>
+
+</body>
+
+</html>
