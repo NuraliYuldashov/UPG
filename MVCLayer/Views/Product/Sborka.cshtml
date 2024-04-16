@@ -1,0 +1,570 @@
+﻿@model DTOS.GamingBuildsDTOs.GamingBuildsDTO
+
+@await Html.PartialAsync("_NavMenu")
+
+<section class="product-product">
+        <div class="container theme-showcase main-container" role="main">
+            <div class="row">
+                <div class="col-lg-60 col-md-60 col-sm-60 col-xs-60">
+                    <div class="row" itemscope itemtype="http://schema.org/Product">
+
+                        <div class="col-lg-60 col-xs-60">
+                            <h1 itemprop="name">@Model.Name</h1>
+                        </div>
+                        <div class="col-lg-20 col-md-27 col-sm-45 col-xs-60">
+                            <div class="panel panel-default equal-height">
+                                <div class="panel-body">
+                                    <div class="image-inner">
+                                        <div class="tab-content tabbigimgc">
+                                            <div class="active" id="tabbigimg1">
+                                                <a data-fslightbox="gallery" class="thumbnail" target="_blank"
+                                                   href="https://upg.uz/storage/files/products/2182/original/awuddc36U9AQAPdhzDNwKyZHB4yHMNk7VeDsanLN.jpg"
+                                                   id="productMainPhotoHref">
+                                                    <img itemprop="image" id="productMainPhoto"
+                                                         src="https://upg.uz/storage/files/products/2182/original/awuddc36U9AQAPdhzDNwKyZHB4yHMNk7VeDsanLN.jpg"
+                                                         style="width: 100%;" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myCarousethumbl7" class="col-lg-5 col-md-6 col-sm-15 col-xs-60 col-carousel hidden-xs">
+                            <div id="myCarousel7" class="carousel slide vertical">
+                                <a href="#myCarousel7" role="button" data-slide="prev" class="carousel-button-up"
+                                   id="carouselUp"></a>
+                                <div class="carousel-inner">
+                                    <ul class="active item" role="tablist" id="carouselProductImage">
+                                        @foreach (var item in Model.ImageUrls)
+                                        {
+                                            <li role="presentation" class="active">
+                                                <a href="@($"https://localhost:7010/{item}")"
+                                                   aria-controls="tabbigimg1" role="tab" data-toggle="tab">
+                                                    <img class="main-image" itemprop="image"
+                                                         "@($"https://localhost:7010/{item}")" alt="@($"https://localhost:7010/{item}")"
+                                                         onclick='currentSlide("@($"https://localhost:7010/{item}")")' />
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <a href="#myCarousel7" role="button" data-slide="next" class="carousel-button-down"
+                                   id="carouselDown"></a>
+                            </div>
+                        </div>
+                        <div id="myCarousethumbimg" class="col-xs-60 visible-xs">
+
+                            <div class="myCarousethumbimg-inner">
+                                <ul role="tablist" style="margin: 15px;">
+                                    @foreach (var item in Model.ImageUrls)
+                                    {
+                                        <li role="presentation" class="active">
+                                            <a href="@($"https://localhost:7010/{item}")"
+                                               aria-controls="tabbigimg1" role="tab" data-toggle="tab">
+                                                <img class="main-image" itemprop="image"
+                                                     "@($"https://localhost:7010/{item}")" alt="@($"https://localhost:7010/{item}")"
+                                                     onclick='currentSlide("@($"https://localhost:7010/{item}")")' />
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-20 col-md-27 col-sm-60 col-xs-60">
+                            <div class="panel panel-default panel-product-buy equal-height">
+                                <link href="https://upg.uz/catalog/view/theme/default/stylesheet/timer.css"
+                                      rel="stylesheet" type="text/css" />
+
+                                <div class="panel-body prices product-info">
+                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+                                        <span class="item-price price-old">@Model.Price сум</span>
+                                        <span class="item-price">@Model.Price сум</span><br />
+                                        <a href="#" role="button" data-toggle="modal"
+                                           data-target="#myModal" id="openModalInProduct"
+                                           class="dotted">Зарегистрируйся</a><br />
+                                        <div class="row row-buttons">
+                                            <div class="col-lg-14 col-md-18 col-sm-14 col-xs-60">
+
+                                                <div class="input-group spinner">
+                                                    <input type="text" name="quantity" class="form-control" value="1"
+                                                           id="chqty7569"
+                                                           onkeypress="if(event.which == 13 || event.keyCode == 13) { return true } else if(event.charCode >= 48 && event.charCode <= 57) { return true } else { return false }">
+                                                    <div class="input-group-btn-vertical">
+                                                        <button class="btn btn-default"
+                                                                onclick="qtybyproductidplus('#chqty7569');"
+                                                                type="button"></button>
+                                                        <button class="btn btn-default"
+                                                                onclick="qtybyproductidminus('#chqty7569', '1');"
+                                                                type="button"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-46 col-md-40 col-sm-46 col-xs-40">
+                                                <script type="text/javascript"
+                                                        src="https://upg.uz/catalog/view/javascript/fast_order.js"></script>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="wait_order_modal" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <h4 class="modal-title">
+                                                                    ASUS ZenBook Pro 16X OLED
+                                                                    UX7602ZM-ME147W (90NB0WU1-M007H0) ® `` — ваш заказ
+                                                                </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <input id="product_id" type="hidden" value="7569">
+                                                                <div class="form-group">
+                                                                    <label for="customer_name">Имя:</label>
+                                                                    <input name="customer_name" type="text"
+                                                                           class="form-control" id="customer_name"
+                                                                           placeholder="Имя" value="">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="customer_email">E-mail:</label>
+                                                                    <input name="customer_email" type="email" required
+                                                                           class="form-control" id="customer_email"
+                                                                           placeholder="your@email.com" value="">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="customer_message">Комментарий:</label>
+                                                                    <input name="customer_message" type="text"
+                                                                           class="form-control" id="customer_message"
+                                                                           placeholder="Комментарий" value="">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <p id="fast_order_result">
+                                                                        Пожалуйста, укажите ваше
+                                                                        имя и email, чтобы мы
+                                                                        могли
+                                                                        связаться с вами
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">
+                                                                    Закрыть
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                        id="wait_order_button">
+                                                                    Отправить
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <a class="item-favourite-btn" role="button"
+                                                   onclick="addToFavorite(2182);"></a>
+
+                                                <a class="item-compare-btn" role="button"
+                                                   data-productname="@Model.Name"
+                                                   data-productslug="@Model.Name"
+                                                   onclick="addToCompare(2182, 18, 'asus-zenbook-pro-16x-oled-90nb0wu1-m007h0', 'ASUS ZenBook Pro 16X OLED UX7602ZM-ME147W (90NB0WU1-M007H0) ® ``');"></a>
+
+                                            </div>
+                                            <br>
+                                            <div class="col-lg-60 col-md-60 col-sm-60 col-xs-60">
+                                                <div style="display: flex">
+                                                    <a id="wait_order" role="button" class="item-buy-btn cart"
+                                                       data-toggle="modal" style="font-size: 17px; margin-right: 5px"
+                                                       data-target="#wait_order_modal" onclick="addToCart(2182);"
+                                                       data-id="c2182"
+                                                       data-productname="ASUS ZenBook Pro 16X OLED UX7602ZM-ME147W (90NB0WU1-M007H0) ® ``"
+                                                       data-productslug="asus-zenbook-pro-16x-oled-90nb0wu1-m007h0">Купить</a>
+                                                    <a id="openQuickOrderModal" role="button" class="item-buy-btn"
+                                                       style="font-size: 17px">Быстрый заказ</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-xs-60 blockshortinfo">
+                                                @* <p>
+                                                    <a href="https://upg.uz/en/brands/brand-asus">
+                                                        <img src="https://upg.uz/storage/files/brands/6/original/L7zKxmHfFNMipzjBfogNjw2MB5c0XRbDuDYAWP1d.png"
+                                                             style="max-width:120px;">
+                                                    </a>
+                                                </p> *@
+                                                Производитель: <strong>@Model.BrandName</strong><br />
+
+                                                Артикул: <strong>@Model.Name</strong>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-15 col-md-60 col-sm-60 col-xs-60">
+                            <div class="panel panel-default panel-product-delivery equal-height">
+                                <div class="panel-body">
+                                    <h4>Расположение</h4>
+                                    <span>
+                                        <a href="https://yandex.uz/maps/-/CCUeYMQBtC" class="blue" style="display: inline;
+    color: #029a55;
+    font-style: normal;
+    font-size: 14px!important;" target="_blank">Улица Навои 37</a>
+                                    </span><br />
+                                    <h4>Режим работы:</h4>
+                                    ежедневно с 10:00 до 20:00<br />
+
+                                    <h4>Расположение</h4>
+                                    <span>
+                                        <a href="https://yandex.uz/maps/-/CCUFV0QqhA" class="blue" style="    display: inline;
+    color: #029a55;
+    font-style: normal;
+    font-size: 14px!important;" target="_blank">Трц. Малика</a>
+                                    </span>, магазин Б-24<br />
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+
+                            $(document).ready(function () {
+                                $('#openModalInProduct').click(function (e) {
+                                    e.preventDefault();
+                                    $('#modal').show();
+                                });
+                            })
+
+                            $('#productMainPhoto').click(function (e) {
+                                e.preventDefault();
+                                $('.main-image').attr('src', $(this).attr('href'));
+                            })
+                            $(document).ready(function () {
+                                let widthTransformTimes = 1;
+                                let countedPictures = $('#carouselProductImage > li').length / 4;
+
+                                $('#carouselDown').click(function (e) {
+                                    e.preventDefault();
+                                    console.log(countedPictures);
+                                    let widthTransform = 1;
+                                    if (widthTransformTimes < countedPictures && $('#carouselProductImage > li').length != 4) {
+                                        console.log('enterd if')
+                                        widthTransform = widthTransformTimes * 300
+                                        $('#carouselProductImage').css('transform', `translateY(-${widthTransform}px)`);
+                                        widthTransformTimes = widthTransformTimes + 1;
+                                    }
+
+                                })
+                                $('#carouselUp').click(function (e) {
+                                    e.preventDefault();
+                                    console.log(countedPictures);
+                                    let widthTransform = 0;
+                                    if (widthTransformTimes > 1) {
+                                        console.log('enterd if')
+                                        widthTransformTimes = widthTransformTimes - 1;
+                                        widthTransform = (widthTransformTimes - 1) * 300;
+                                        console.log(widthTransform)
+                                        $('#carouselProductImage').css('transform', `translateY(-${widthTransform}px)`);
+                                    }
+
+                                })
+
+                            });
+
+                            function showModal(productId, productSlug, productName) {
+                                const elements = localStorage.getItem('compare_product');
+                                const categoryElements = JSON.parse(elements);
+                                const elementKeys = Object.keys(categoryElements);
+                                const parameter = `?categories=${elementKeys}&data=${categoryElements[elementKeys[0]]}`;
+
+                                $('#modalNew').show();
+                                $('#informModalCartCompare').html(`<div>Товар <a href="/products/${productSlug}">${productName}</a> добавлен в <a id="compareBtn" href="https://upg.uz/en/compare${parameter}#">список сравнения товаров</a>!</div>`);
+                            }
+
+                            function getProductLength() {
+                                let elements = localStorage.getItem('compare_product');
+                                let categoryElements = JSON.parse(elements);
+                                let compareProducts = 0;
+                                if (elements) {
+                                    const elementKeys = Object.keys(categoryElements);
+                                    for (const elementKey in elementKeys) {
+                                        const element = categoryElements[elementKeys[elementKey]].split(',');
+                                        element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                        compareProducts += element.length;
+                                    }
+                                }
+
+                                return compareProducts;
+                            }
+
+                            function addToCompare(productId, categoryId, productSlug, productName) {
+                                const compareProducts = localStorage.getItem('compare_product');
+                                if (compareProducts) {
+                                    let compare_products = '';
+                                    let exist = false;
+                                    let cart_product_check = [];
+                                    let productIds = JSON.parse(localStorage.getItem('compare_product'));
+
+                                    if (productIds[categoryId]) {
+                                        console.log('category exists');
+                                        console.log(productIds[categoryId]);
+                                        cart_product_check = productIds[categoryId].split(',');
+
+                                        for (let i = 0; i <= cart_product_check.length; i++) {
+                                            if (parseInt(cart_product_check[i]) === productId) {
+                                                console.log('exists')
+                                                exist = true;
+                                            }
+                                        }
+                                    }
+
+                                    if (!exist) {
+                                        console.log('workng not exist')
+                                        if (cart_product_check.length < 1) {
+                                            productIds[categoryId] = `${productId},`;
+                                            localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                            let containerCounter = $('#top-compare-total');
+                                            containerCounter.text(getProductLength());
+                                            showModal(productId, productSlug, productName);
+                                            $(`#l${productId}`).addClass('active');
+
+                                        } else if (cart_product_check.length <= 3 && cart_product_check.length >= 1) {
+                                            $.ajax({
+                                                url: '/check-compare/' + productId + '/' + cart_product_check[0],
+                                                method: 'GET',
+                                                success: function (data) {
+                                                    if (data.message === 'success') {
+                                                        compare_products = productIds[categoryId];
+                                                        compare_products += `${productId},`;
+                                                        productIds[categoryId] = compare_products;
+                                                        localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                                        let containerCounter = $('#top-compare-total');
+                                                        containerCounter.text(getProductLength());
+                                                        showModal(productId, productSlug, productName);
+                                                    } else {
+                                                        alert('For comparing products categories must be the same')
+                                                        $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                                    }
+                                                }, error: function (data) {
+                                                    // console.log(data);
+                                                }
+                                            });
+                                        } else {
+                                            alert('You can compare only 3 products')
+                                            $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                        }
+
+                                    } else {
+                                        showModal(productId, productSlug, productName);
+                                    }
+                                } else {
+                                    localStorage.setItem('compare_product', JSON.stringify({ [categoryId]: `${productId},` }));
+                                    showModal(productId, productSlug, productName);
+                                }
+                                calculateCompareProductsCount();
+                            }
+
+                            function calculateCompareProductsCount() {
+                                let compareProducts = 0;
+                                const data = localStorage.getItem('compare_product');
+                                const categoryElements = JSON.parse(data);
+                                const elementKeys = Object.keys(categoryElements);
+                                for (const elementKey in elementKeys) {
+                                    const element = categoryElements[elementKeys[elementKey]].split(',');
+                                    element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                    compareProducts += element.length;
+                                }
+                                $('#top-compare-total').html(compareProducts);
+                            }
+
+                            function addToFavorite(id) {
+                                let product_id = {};
+                                product_id.id = id;
+                                $.ajax({
+                                    url: 'https://upg.uz/en/add-to-favorite/2182',
+                                    method: 'GET',
+                                    success: function (data) {
+                                        let countLiked = parseInt($('#top-wishlist-total').text());
+                                        if (data.message === 'added') {
+                                            $('#top-wishlist-total').text(data.count);
+                                        } else if (data.message === 'removed') {
+                                            $('#top-wishlist-total').text(data.count);
+
+                                        }
+                                    }, error: function (data) {
+                                        console.log(data)
+                                        let countLiked = parseInt($('#top-wishlist-total').text());
+                                        if (data.responseJSON.message === 'removed') {
+                                            $('#top-wishlist-total').text(countLiked - 1);
+
+                                        } else if (data.responseJSON.message === 'unregistered') {
+                                            $('.item-favourite-btn').append(`<div style="position:absolute;background-color:red;color:white;padding: 10px 15px; top: -10px;z-index:1000; left: 0;">Пользователь не зарегистрирован</div>`)
+                                            setTimeout(() => {
+                                                $('.item-favourite-btn').empty()
+                                            }, 1000)
+
+
+                                        }
+                                    }
+                                })
+                            }
+
+                            //SLIDER
+                            var slideIndex = 0;
+                            showSlides(slideIndex);
+
+                            function plusSlides(n) {
+                                showSlides(slideIndex += n);
+                            }
+
+                            function currentSlide(url) {
+                                setImage(url)
+                            }
+
+                            function setImage(imageUrl) {
+                                $('#productMainPhoto').attr('src', `${imageUrl}`)
+                                $('#productMainPhotoHref').attr('href', `${imageUrl}`)
+                            }
+
+                            function showSlides(n) {
+                                var i;
+                                var slides = document.getElementsByClassName("big-image");
+                                var dots = document.getElementsByClassName("demo");
+                                // debugger
+                                if (n > slides.length) {
+                                    slideIndex = 1
+                                }
+                                if (n < 1) {
+                                    slideIndex = slides.length
+                                }
+                                for (i = 0; i < slides.length; i++) {
+                                    slides[i].style.display = "none";
+                                }
+                                // console.log(slides[slideIndex]);
+                                // slides[slideIndex - 1].style.display = "block";
+                                // dots[slideIndex - 1].className += " active";
+                                for (let j = 0; j < dots.length; j++) {
+                                    if (j === n) {
+                                        dots[j].classList.add('active')
+                                    } else {
+                                        dots[j].classList.remove('active')
+                                    }
+                                }
+                            }
+                        </script>
+
+                        <div class="col-xs-60">
+                            <div id="horizontalTab container--tabs">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab-2">Характеристики</a></li>
+                                    <li><a href="#tab-1">Описание</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane">
+                                        <p>
+                                            @Model.Description
+                                        </p>
+                                    </div>
+                                    <div id="tab-2" class="tab-pane tab-table active">
+                                        <div class="table-responsive table-comparison">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <div class="row">
+                                                            </div>
+                                                        </th>
+                                                        <th>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">MB</th>
+                                                        <td>@Model.MotherBoard</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">CPU</th>
+                                                        <td>@Model.CPU</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Cooler</th>
+                                                        <td>@Model.Cooler</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">RAM</th>
+                                                        <td>@Model.RAM</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">SSD</th>
+                                                        <td>@Model.SSD</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">HDD</th>
+                                                        <td>@Model.HDD</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">GPU</th>
+                                                        <td>@Model.GPU</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">PSU</th>
+                                                        <td>@Model.PSU</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Case</th>
+                                                        <td>@Model.Case</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            window.addEventListener("load", function () {
+                                // store tabs variable
+                                var myTabs = document.querySelectorAll("ul.nav-tabs > li");
+                                function myTabClicks(tabClickEvent) {
+                                    for (var i = 0; i < myTabs.length; i++) {
+                                        myTabs[i].classList.remove("active");
+                                    }
+                                    var clickedTab = tabClickEvent.currentTarget;
+                                    clickedTab.classList.add("active");
+                                    tabClickEvent.preventDefault();
+                                    var myContentPanes = document.querySelectorAll(".tab-pane");
+                                    for (i = 0; i < myContentPanes.length; i++) {
+                                        myContentPanes[i].classList.remove("active");
+                                    }
+                                    var anchorReference = tabClickEvent.target;
+                                    var activePaneId = anchorReference.getAttribute("href");
+                                    var activePane = document.querySelector(activePaneId);
+                                    activePane.classList.add("active");
+                                }
+                                for (i = 0; i < myTabs.length; i++) {
+                                    myTabs[i].addEventListener("click", myTabClicks)
+                                }
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

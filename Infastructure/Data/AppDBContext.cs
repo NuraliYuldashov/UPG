@@ -10,6 +10,9 @@ public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
         Database.EnsureCreated();
     }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Accessories> Accessories { get; set; }
+
     public DbSet<Armchairs> Armchairs { get; set; }
     public DbSet<Cooler> Coolers { get; set; }
     public DbSet<Drives> Drives { get; set; }
@@ -20,7 +23,6 @@ public class AppDBContext : IdentityDbContext<ApplicationUser>
     public DbSet<Keyboard> Keyboards { get; set; }
     public DbSet<Laptop> Laptops { get; set; }
     public DbSet<Mice> Mices { get; set; }
-    public DbSet<Accessories> Accessories { get; set; }
     public DbSet<Domain.Entities.Monitor> Monitors { get; set; }
     public DbSet<MousePads> Mouse_Pads { get; set; }
     public DbSet<RAM> RAMs { get; set; }

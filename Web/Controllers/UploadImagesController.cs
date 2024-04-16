@@ -4,24 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace PresentationLayers.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-public class UploadImagesController(IUploadImageService imageService,
-                              IWebHostEnvironment hostEnvironment,
-                              IConfiguration configuration)
+public class UploadImagesController(IUploadImageService imageService)
     : ControllerBase
 {
     private readonly IUploadImageService _imageService = imageService;
-    private readonly IWebHostEnvironment _hostEnvironment = hostEnvironment;
-    private readonly IConfiguration _configuration = configuration;
+
 
     [HttpPost]
     public async Task<IActionResult> Upload(IFormFile file)
     {
         try
         {
-            var folderName = Path.Combine(_hostEnvironment.WebRootPath, "images");
-            var domain = _configuration["Domain"]!;
-            var result = await _imageService.UploadAsync(file, folderName, domain);
-            Console.WriteLine(folderName, domain, result);
+            var result = await _imageService.UploadAsync(file);
             return Ok(result);
         }
         catch (Exception ex)
@@ -35,9 +29,47 @@ public class UploadImagesController(IUploadImageService imageService,
     {
         try
         {
-            var folderName = Path.Combine(_hostEnvironment.WebRootPath, "images");
-            await _imageService.DeleteAsync(url, folderName);
+            
+            await _imageService.DeleteAsync(url);
             return Ok();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpPost("multiple")]
+    public async Task<IActionResult> UploadImage(List<IFormFile> files)
+    {
+        try
+        {
+            
+
+            var result = await _imageService.UploadAsync(files);
+            return Ok(result);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpDelete("multiple")]
+    public async Task<IActionResult> DeleteImage(List<string> urls)
+    {
+        try
+        {
+            await _imageService.DeleteAsync(urls);
+            return Ok();
+        }
+        catch (FileNotFoundException ex)
+        {
+            return NotFound(ex.Message);
         }
         catch (Exception ex)
         {

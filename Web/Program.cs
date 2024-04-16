@@ -23,7 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")),
-    ServiceLifetime.Scoped);
+    ServiceLifetime.Transient);
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 #endregion

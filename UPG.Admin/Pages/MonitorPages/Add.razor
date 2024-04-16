@@ -28,7 +28,7 @@
                             <MudSwitch @bind-Value="monitor.HDR" ThumbIcon="@(monitor.HDR==true ? Icons.Material.Filled.Done : Icons.Material.Filled.Close)" ThumbIconColor="@(monitor.HDR==true ? Color.Success : Color.Error)">HDR</MudSwitch>
                             <MudSwitch Class="mx-10" @bind-Value="monitor.Guarantee_period" ThumbIcon="@(monitor.Guarantee_period==true ? Icons.Material.Filled.Done : Icons.Material.Filled.Close)" ThumbIconColor="@(monitor.Guarantee_period==true ? Color.Success : Color.Error)">Guarantee period</MudSwitch>
                         </MudItem>
-                        <InputFile OnChange="@LoadFile" class="form-control" multiple />
+                        <InputFile OnChange="@LoadFile" class="form-control" multiple disabled="@isUploadComplete" />
                         @if (errors.Count > 0)
                         {
                             <ul class="text-danger">
@@ -40,7 +40,7 @@
                                 }
                             </ul>
                         }
-                        
+
                     </MudItem>
                 </MudGrid>
                 <MudTextField @bind-Value="monitor.Description" Lines="5" Label="Description" Variant="Variant.Outlined" Margin="Margin.Dense" Class="mt-4"></MudTextField>
@@ -59,10 +59,10 @@
     @inject HttpClient httpClient
     @inject ISnackbar Snackbar
     AddMonitorDto monitor = new();
-    private int maxAllowedFiles = 5;
+    private int maxAllowedFiles = 10;
     private long maxFileSize = 1024 * 5 * 1024;
     private List<string> errors = new();
-
+    private bool isUploadComplete = false;
 
     private void Cancel()
     {
@@ -72,10 +72,10 @@
     private async void Save()
     {
         var json = JsonConvert.SerializeObject(monitor);
-
         var request = new StringContent(json, Encoding.UTF8, "application/json");
 
         var response = await httpClient.PostAsync(Helper.URL + "monitors", request);
+        Console.WriteLine(response);
 
         if (response.IsSuccessStatusCode)
         {
@@ -103,26 +103,24 @@
             errors.Add($"Error: Attempting to upload {e.FileCount} files, but only {maxAllowedFiles} are allowed!");
             return;
         }
-        
-        using (var formData = new MultipartFormDataContent())
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
         {
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
-            {
-                string newFileName = file.Name;
-                await using FileStream fs = new(newFileName, FileMode.Create);
-                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
-                formData.Add(new StreamContent(fs), "file", newFileName);
-            }
+            using var formData = new MultipartFormDataContent();
+            formData.Add(new StreamContent(file.OpenReadStream(maxFileSize)), "file", file.Name);
 
-            HttpResponseMessage response = await httpClient.PostAsync(Helper.URL + "Images/MultiUpload", formData);
-
+            var response = await httpClient.PostAsync(Helper.URL + "UploadImages", formData);
+            Console.WriteLine(response);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Fayl muvaffaqiyatli jo'natildi.");
+                Console.WriteLine("File uploaded successfully.");
+                var uploadedImageUrl = await response.Content.ReadAsStringAsync();
+                monitor.ImageUrls.Add(uploadedImageUrl);
+                isUploadComplete = true; // Disable the button after successful upload
             }
             else
             {
-                Console.WriteLine($"Xato: {response.StatusCode} - {response.ReasonPhrase}");
+                errors.Add($"Failed to upload file: {file.Name} - {response.StatusCode}");
             }
         }
     }

@@ -3,114 +3,347 @@
 }
 @model IEnumerable<DTOS.AccessoriesDtos.AccessoriesDto>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UPG | AppleProducts</title>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
-    <link rel="shortcut icon"
-          href="images/site_tab_img.jpg"
-          type="image/jpeg" />
+@await Html.PartialAsync("_navmenu")
+<section>
+    <div class="container theme-showcase main-container" role="main">
+        <div class="row">
+            <div class="col-lg-15 col-md-15 col-sm-20 col-xs-60">
+                <div id="column-left">
+                    <div class="col-filter">
+                        <form href="?" id="catalog-filter-form">
+                            <div class="col-filter-div-header header-filter">
+                                <a class="header-filterr" id="collapseExamplee" role="button">Фильтр</a>
+                            </div>
+                            <div class="" id="">
+                                <div class="filter-hidden">
+                                    <div class="col-filter-div">
+                                        <div class="header-sub-filter" style="padding: 0">Бренды</div>
+                                        <div class="checkbox checkbox-success">
+                                            <input class="styled brands-checkbox"
+                                                   id="brands-checkbox-0" type="checkbox"
+                                                   value="apple">
+                                            <label for="brands-checkbox-0">Apple</label>
+                                        </div>
+                                        <input type="hidden" name="brands" id="brands-hidden-input">
+                                    </div>
 
-    <link rel="stylesheet" href="~/css/shared.css" />
-    <link rel="stylesheet" href="~/css/laptop.css" />
-    <link rel="stylesheet" href="~/css/main.css">
-</head>
-<body>
+                                    <div id="slider-non-linear-step" style="
+    width: 80%;
+    margin-left: 30px;
+"></div>
+                                    <div id="slider-non-linear-step-value"></div>
 
+                                    <input type="hidden" id="min" name="price-min" />
+                                    <input type="hidden" id="max" name="price-max" />
+                                    <script>
+                                        var slider = document.getElementById('slider-non-linear-step');
 
-    <!-- Site Main header end -->
-    <main>
-        <div class="container main-container">
-            <div class="filtr">
-                <h2>Фильтр</h2>
-                <span>
+                                        noUiSlider.create(slider, {
+                                            start: [parseInt('319000') - 100000,
+                                            parseInt('714000') + 100000],
+                                            connect: true,
+                                            range: {
+                                                'min': parseInt('319000') - 1,
+                                                'max': parseInt('714000') + 100000
+                                            }
+                                        });
+                                        var nonLinearStepSliderValueElement = document.getElementById('slider-non-linear-step-value');
 
-                    <div class="brends">
-                        <p class="filter-title">Бренды</p>
-                        <span class="checkbox">
-                            <input class="checkbox" type="checkbox" id="checkbox1" />
-                            <label for="checkbox1">Apple</label>
-                        </span>
-                        
-                    </div>
-                    <div class="price">
+                                        slider.noUiSlider.on('update', function (values) {
+                                            // console.log(values);
+                                            values[0] = number_format(Math.round(values[0]), 0, '.', ' ')
+                                            values[1] = number_format(Math.round(values[1]), 0, '.', ' ')
+                                            // console.log(values)''
 
-                        <input type="range"
-                               id="rangeInput"
-                               min="5000000"
-                               max="50000000"
-                               value="5 000 000" />
-                        <span class="price-in-number">
-                            <p>5 000 000</p>
-                            <p id="rangeLabel">50 000 000</p>
-                        </span>
-                    </div>
+                                            nonLinearStepSliderValueElement.innerHTML = values.join(' - ');
+                                            let u = nonLinearStepSliderValueElement.innerHTML;
+                                            u = u.split('-');
+                                            $('#min').val(u[0].replace(/\s/g, ''))
+                                            $('#max').val(u[1].replace(/\s/g, ''))
+                                        });
+                                        function number_format(number, decimals, dec_point, thousands_point) {
 
-                    
-                    <div class="buttons-of-filter">
-                        <button class="reset">Сбросить фильтр</button>
-                        <button class="except">Применить фильтр</button>
-                    </div>
+                                            if (number == null || !isFinite(number)) {
+                                                throw new TypeError("number is not valid");
+                                            }
 
-                </span>
-            </div>
-            <div class="main-side">
-                <div class="main-side-intro">
-                    <p><a asp-controller="Home">Главная</a> / Продукция Apple</p>
-                    <span>
-                        <img width="70" src="~/images/Category_images/AppleProducts.png" alt="">
-                        <h1>Продукция Apple</h1>
-                    </span>
-                    <div class="sort">
-                        <label for="">Сортировка</label>
-                        <select name="" id="">
-                            <option value="Поумолчанию">Поумолчанию</option>
-                            <option value="">Наименование (А -> Я)</option>
-                            <option value="">Наименование (Я -> А)</option>
-                            <option value="">Цена (по возрастанию)</option>
-                            <option value="">Цена (по убыванию)</option>
-                            <option value="">Рейтинг (по убыванию)</option>
-                            <option value="">Рейтинг (по возрастанию)</option>
-                        </select>
+                                            if (!decimals) {
+                                                var len = number.toString().split('.').length;
+                                                decimals = len > 1 ? len : 0;
+                                            }
 
+                                            if (!dec_point) {
+                                                dec_point = '.';
+                                            }
+
+                                            if (!thousands_point) {
+                                                thousands_point = ',';
+                                            }
+
+                                            number = parseFloat(number).toFixed(decimals);
+
+                                            number = number.replace(".", dec_point);
+
+                                            var splitNum = number.split(dec_point);
+                                            splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+                                            number = splitNum.join(dec_point);
+
+                                            return number;
+                                        }
+                                    </script>
+
+                                    <div id="catalog-characteristics">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="order">
+                            <input type="hidden" id="counting">
+                            <button id="filter-clear" class="btn btn-default btn-filter">Сбросить фильтр</button>
+                            <input type="submit" value="Применить фильтр" id="catalog-filter-submit" class="btn btn-default btn-filter" />
+                        </form>
                     </div>
                 </div>
-                <div class="laptops">
-                    <div class="diskount-items">
-                        @foreach (var i in Model)
-                        {
-                            <a class="discount-item" href="../item.html">
-                                <img src="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")" alt=@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}") />
-                                <p>@i.Name</p>
-                                <span>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
-                                <s>@i.Price сум</s>
-                                <h2>@i.Price сум</h2>
-                                <div class="services">
-                                    <button class="main-btn">КУПИТЬ</button>
-                                    <i class="fa-solid fa-list"></i>
+            </div>
+            <div class="col-lg-45 col-md-45 col-sm-40 col-xs-60 col-content" id="content">
+                <div class="row">
+                    <div class="col-lg-60 col-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <ol class="breadcrumb mt-1">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Продукция Apple</li>
+                        </ol>
+                    </div>
+                    <div class="col-lg-60 col-xs-60">
+                        <h1 class="nomargin">Продукция Apple</h1>
+                    </div>
+                    <div class="col-lg-60 col-xs-60">
+                        <img class="img-responsive" src="https://upg.uz/storage/files/categories/46/thumbs/ZQwpBtDTeCcAch94f1y7Wm1hmGE9bfOD4bogrdml.png" alt="Манипуляторы и аксессуары" />
+                    </div>
+                    <div class="col-lg-60 col-xs-60">
+                        <div class="col-center-filter">
+                            <div class="row">
+                                <form id="category-order-form">
+                                    <div class="col-lg-25 col-md-23 col-sm-60 col-xs-60 col-center-filter-item">
+                                        <label for="order">Сортировка</label>
+                                        <select onchange="categoryFormSubmit()" data-width="auto" name="order"
+                                                id="category-order">
+                                            <option value="" selected>
+                                                По
+                                                умолчанию
+                                            </option>
+                                            <option value="ASC">
+                                                Наименование (А -&gt; Я)
+                                            </option>
+                                            <option value="DESC">
+                                                Наименование (Я -&gt; А)
+                                            </option>
+                                            <option value="ASC_price">
+                                                Цена (по возрастанию)
+                                            </option>
+                                            <option value="DESC_price">
+                                                Цена (по убыванию)
+                                            </option>
+                                            <option value="DESC_rating">
+                                                Рейтинг (по убыванию)
+                                            </option>
+                                            <option value="ASC_rating">
+                                                Рейтинг (по возрастанию)
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-18 col-md-18 col-sm-60 col-xs-60 col-center-filter-item">
+                                        <div class="category-products-count-filter">
+                                            <label>Товаров на странице</label>
+                                            <select onchange="categoryFormSubmit()" name="counting"
+                                                    data-width="auto" id="category-counting">
+                                                <option value="20">
+                                                    20
+                                                </option>
+                                                <option value="30">
+                                                    30
+                                                </option>
+                                                <option value="40" selected>
+                                                    40
+                                                </option>
+                                                <option value="50">
+                                                    50
+                                                </option>
+                                                <option value="60">
+                                                    60
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row-viewed col-catalog-grid product-grid">
+                            @foreach (var i in Model)
+                            {
+                                <div class="col-lg-12 col-md-15 col-sm-20 col-xs-30 item-product">
+                                    <div class="item-product-inner">
+                                        <a asp-action="Sborka" asp-controller="Product" asp-route-id="@i.ID" class="item-link">
+
+                                            <img class="item-product-img center-block"
+                                                 src="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")"
+                                                 alt="@($"https://localhost:7010/{i.ImageUrls.FirstOrDefault()}")">
+
+                                            @i.Name
+
+                                        </a>
+                                        <div class="product-mini-rating">
+                                            <div class="mp-small_rate" mp-prod_id="">
+                                                <div class="mp-rating-value-wrap">
+                                                    <div class="mp-rating-value">
+                                                        <div style="width:100%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <span class="item-price price-old">@i.Price сум</span>
+
+                                        <span class="item-price price-new">@i.Price сум</span>
+
+                                        <div class="item-buttons center-block">
+                                            <a class="item-buy-btn cart" role="button" onclick="addToCart('1');"
+                                               id="cartActive1" data-id="c1" data-productname="@i.Name"
+                                               data-productslug="hyperx-pulsefire-haste">Купить</a>
+                                            <a class="item-compare-btn libra" role="button"
+                                               onclick="addToCompare(1, 1, '@i.Name.ToLower();', '@i.Name')"
+                                               data-id="l1"></a>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        localStorage.getItem('compare_product').split(',').forEach(el => {
+                                            if (el === "1") {
+                                                $(`[data-id="l${el}"]`).addClass('selected_libra');
+                                            }
+                                        })
+                                        if (JSON.parse(localStorage.getItem('product_id')) != null) {
+                                            JSON.parse(localStorage.getItem('product_id')).forEach(el => {
+                                                if (el.product_id === "1") {
+                                                    $(`[data-id="c${el.product_id}"]`).addClass('selected_cart');
+                                                }
+                                            })
+                                        }
+
+                                    </script>
                                 </div>
-                            </a>
-                        }
+                                <script>
+                                    function showModal(productId, productSlug, productName) {
+                                        $(`[data-id="l${productId}"]`).addClass('active');
+                                        const elements = localStorage.getItem('compare_product');
+                                        const categoryElements = JSON.parse(elements);
+                                        const elementKeys = Object.keys(categoryElements);
+                                        const parameter = `?categories=${elementKeys}&data=${categoryElements[elementKeys[0]]}`;
+                                        $('#modalNew').show();
+                                        $('#informModalCartCompare').html(`<div>Товар <a href="/products/${productId}">${productName}</a> добавлен в <a id="compareBtn" href="https://upg.uz/en/compare${parameter}#">список сравнения товаров</a>!</div>`);
+                                    }
+
+                                    function getProductLength() {
+                                        let elements = localStorage.getItem('compare_product');
+                                        let categoryElements = JSON.parse(elements);
+                                        let compareProducts = 0;
+                                        if (elements) {
+                                            const elementKeys = Object.keys(categoryElements);
+                                            for (const elementKey in elementKeys) {
+                                                const element = categoryElements[elementKeys[elementKey]].split(',');
+                                                element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                                compareProducts += element.length;
+                                            }
+                                        }
+
+                                        return compareProducts;
+                                    }
+
+                                    function addToCompare(productId, categoryId, productSlug, productName) {
+                                        const compareProducts = localStorage.getItem('compare_product');
+                                        if (compareProducts) {
+                                            let compare_products = '';
+                                            let exist = false;
+                                            let cart_product_check = [];
+                                            let productIds = JSON.parse(localStorage.getItem('compare_product'));
+
+                                            if (productIds[categoryId]) {
+                                                console.log('category exists');
+                                                console.log(productIds[categoryId]);
+                                                cart_product_check = productIds[categoryId].split(',');
+
+                                                for (let i = 0; i <= cart_product_check.length; i++) {
+                                                    if (parseInt(cart_product_check[i]) === productId) {
+                                                        console.log('exists')
+                                                        exist = true;
+                                                    }
+                                                }
+                                            }
+
+                                            if (!exist) {
+                                                console.log('workng not exist')
+                                                if (cart_product_check.length < 1) {
+                                                    productIds[categoryId] = `${productId},`;
+                                                    localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                                    let containerCounter = $('#top-compare-total');
+                                                    containerCounter.text(getProductLength());
+                                                    showModal(productId, productSlug, productName);
+                                                    $(`#l${productId}`).addClass('active');
+
+                                                } else if (cart_product_check.length <= 3 && cart_product_check.length >= 1) {
+                                                    $.ajax({
+                                                        url: '/check-compare/' + productId + '/' + cart_product_check[0],
+                                                        method: 'GET',
+                                                        success: function (data) {
+                                                            if (data.message === 'success') {
+                                                                compare_products = productIds[categoryId];
+                                                                compare_products += `${productId},`;
+                                                                productIds[categoryId] = compare_products;
+                                                                localStorage.setItem('compare_product', JSON.stringify(productIds));
+                                                                let containerCounter = $('#top-compare-total');
+                                                                containerCounter.text(getProductLength());
+                                                                showModal(productId, productSlug, productName);
+                                                            } else {
+                                                                alert('For comparing products categories must be the same')
+                                                                $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                                            }
+                                                        }, error: function (data) {
+                                                            // console.log(data);
+                                                        }
+                                                    });
+                                                } else {
+                                                    alert('You can compare only 3 products')
+                                                    $(`[data-id="l${productId}"]`).removeClass('selected_libra')
+                                                }
+
+                                            } else {
+                                                showModal(productId, productSlug, productName);
+                                            }
+                                        } else {
+                                            localStorage.setItem('compare_product', JSON.stringify({ [categoryId]: `${productId},` }));
+                                            showModal(productId, productSlug, productName);
+                                        }
+                                        calculateCompareProductsCount();
+                                    }
+
+                                    function calculateCompareProductsCount() {
+                                        let compareProducts = 0;
+                                        const data = localStorage.getItem('compare_product');
+                                        const categoryElements = JSON.parse(data);
+                                        elementKeys = Object.keys(categoryElements);
+                                        for (const elementKey in elementKeys) {
+                                            const element = categoryElements[elementKeys[elementKey]].split(',');
+                                            element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                                            compareProducts += element.length;
+                                        }
+                                        $('#top-compare-total').html(compareProducts);
+                                    }
+                                </script>
+                            }
+
+                        </div>
+                        @await Html.PartialAsync("_navbrend")
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <script src="~/js/app.js"></script>
-</body>
-</html>
+    </div>
+</section>
 

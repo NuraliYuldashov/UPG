@@ -1,332 +1,469 @@
 ﻿
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="dot" href="#" data-toggle="modal" data-target="#myModal"
+                           id="openModal">Вход/регистрация</a>
+                    </li>
 
-<div class="row row-search">
-    <div class="col-lg-15 col-md-15 col-sm-20 col-xs-60 col-menu">
-        <div class="row">
-            <div class="col-xs-60 hide-menu">
-                <div class="input-group input-group-lg">
-                    <div class="input-group-btn">
-                        <button class="btn btn-success btn-custom btn-custom-1"
-                                id="btn-hide-menu">
-                            Каталог<span class="menu-arrow-down"
-                                         id="btn-hide-menu-arrow"></span>
-                        </button>
-                        <ul class="mn-vnavigation" id="top-navigation" style="display: none;">
-                            
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Sborka"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="~/images/Category_images/Sborka.png">
-                                    Игровые Сборки
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Laptops"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="~/images/Category_images/Laptops.png">
-                                    Ноутбуки
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Keyboards"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="~/images/Category_images/keyboards.png">
-                                    Клавиатуры
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Mouses"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/1/original/ClVCWXWlYzbSJfe9ntj0idV1TDx377oHx86ScpDE.png">
-                                    Мышки
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Headphones"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/5/original/d9I688kCoxpZ2mlRhxKFYFxlnHi7IrtiKeo1BBOQ.png">
-                                    Наушники
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Microfones"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/4/original/xlHL5OX68DV7E5dceXXY9aRCDDpK0iq3GLc250bR.png">
-                                    Микрофоны
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="MousePads"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/7/original/EN2FfWb0AyLw3u4EEaxC4YLPMZboJmmYG1mOfpN0.jpg">
-                                    Коврики для мыши
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Acsessories"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/8/original/VadcrJsqiLz8kLU6QXd3NrIWz9skO9HqWzAmv2gz.png">
-                                    Аксессуары
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Decor">
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/48/original/I7RUBYI5SRCYQ74Tcdmvl9eOkjYJbNXaOQC70pzC.png">
-                                    Декор
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Kits">
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/10/original/xoR1asP3svzpJkHjzt0ak1c8YJFZdbqeo5EeSylu.png">
-                                    Комплекты
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Monitors">
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/16/original/zqinDL2blKzyi1hKHZc7bjaa47wWaBTX5weF37Nu.png">
-                                    Мониторы
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1"
-                                   asp-controller="Home" asp-action="SSDorHDD"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/23/original/ekFcdz4ptTSEI7WHAUCnRQDji9hI1KYPt42uRIAh.png">
-                                    Накопители
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="RAM"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/24/original/PPnmwAwixtZlWMzILfqOo8aVXFxkwDUlP8gi6Rez.png">
-                                    ОЗУ
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="UPS"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/49/original/ZxAm4LRIFFQq2kALK03yLK0Zs4JKDkyDr0zTyx0r.png">
-                                    UPS
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="PowerSupplies"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/47/original/nvB5YiCzARiogKii62ozj9JT2FRmUrZdsFZIalg5.png">
-                                    Блоки питания
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Colons"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/13/original/xgQKYM19GYo0bZxcZcosGIGIrrsEKhuoyvKDmWhu.png">
-                                    Колонки
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="WebCam"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/12/original/vHTy1p93afSz7YWwEtVQcocnhJ9O91Gn7M7EYBPe.png">
-                                    Веб-Камеры
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="AppleProducts"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/46/original/YDLt8UdjcWcp56OYjx3JOKEIqTtXD3xD6fiAqooY.png">
-                                    Продукция Apple
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="GamingConsoles"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/26/original/pWPl4NOSA8IqeWOGdyAOkyebkXVV3JwbGIhoDlu6.png">
-                                    Игровые консоли
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1"
-                                   asp-controller="Home" asp-action="Gamepads"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/11/original/KJ87wGwc922s2bvKiUFUF0EtKYSgp6TytQsYnYTK.png">
-                                    Игровые геймпады
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Glasses"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/9/original/jHBuspaT1OZfpnUhEZdBfSGFxgsH1bWBYH502JJV.png">
-                                    Очки для геймеров
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="WiFiRouter"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/17/original/XQGWDdWvqxKY72v68oAP32w8fl8WMByzXeMqFi5y.png">
-                                    Wi-Fi Роутеры
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Kronshteyns"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/25/original/mXILQW2LGkZCubFAvUSuLPE9kDyrasOnmI9V0ILU.png">
-                                    Кронштейны
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Coolers"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/22/original/w9vLhnGIpo1rLTu8Mdy0bYDXCEVo1InT1WoD8phI.png">
-                                    Кулера
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Cases"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/19/original/ndp71MvfsLPxnbmhq0SS4qWDSfkcaIu0GZCb1s1t.png">
-                                    Корпуса
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Armchairs"
-                                   class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/14/original/w0QtYaEkocyKm7R9zaTZi24FaVBiIU2ii495WaWs.png">
-                                    Кресла
-                                </a>
-
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a tabindex="-1" asp-controller="Home" asp-action="Tables" class="parent">
-                                    <img class="catalog-icon"
-                                         src="https://upg.uz/storage/files/categories/27/original/caZDCrvFxGauDtr93yF8nSgi19pGpiUTEZyhtU34.png">
-                                    Столы для геймеров
-                                </a>
-
-                            </li>
-
-                        </ul>
-                    </div><!-- /btn-group -->
-                </div><!-- /input-group -->
-            </div><!-- /.col-xs-12 -->
-        </div><!-- /.row -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="iconlink" href="#">
+                            <div class="icon-favourite ">
+                                <span class="icon-count" id="top-wishlist-total">0</span>
+                            </div><span class="link-title hidden-md hidden-sm">Закладки</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconlink" id="compareBtn" style="cursor: pointer">
+                            <div class="icon-compare ">
+                                <span class="icon-count" id="top-compare-total">0</span>
+                            </div><span class="link-title hidden-md hidden-sm">Сравнение товаров</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="iconlink " href="/cart-list">
+                            <div class="icon-cart " id="cartContainer">
+                                <span class="icon-count counter"
+                                      id="top-shopping-cart-total">0</span>
+                            </div><span class="link-title hidden-md hidden-sm">Корзина</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
     </div>
-    <div class="col-lg-45 col-md-45 col-sm-40 col-xs-60" style="margin-top: 15px">
-        <div class="row">
-            <div class="col-xs-60">
-                <form action="/search" class="input-group input-group-lg" id="search-form" method="GET">
-                    <input type="text" name="name" value="" class="form-control search-input"
-                           placeholder="Найти, например, HyperX Cloud Alpha" id="search-input"
-                           autocomplete="off" />
-                    <div class="dropdown-menu" style="top: 40px; left: 0px; display: none;" id="droping">
+    <script>
+        $(document).ready(function (e) {
+            let elements = localStorage.getItem('compare_product');
+            let compareProducts = 0;
+            let categoryElements;
+            let elementKeys;
+            if (elements) {
+                categoryElements = JSON.parse(elements);
+                console.log(`categoryElements`);
+                console.log(categoryElements);
+                elementKeys = Object.keys(categoryElements);
+                console.log(categoryElements);
+                console.log(elementKeys);
+                for (const elementKey in elementKeys) {
+                    const element = categoryElements[elementKeys[elementKey]].split(',');
+                    element[element.length - 1] === '' ? element.splice(-1, 1) : element;
+                    compareProducts += element.length;
+                }
+            } else {
+                elements = [];
+            }
+            $('#top-compare-total').html(compareProducts);
+
+            $('#compareBtn').click(function (e) {
+                e.preventDefault();
+                const categoryId = Object.keys(elements)[0];
+                console.log('loging in top-header')
+                elements = localStorage.getItem('compare_product');
+                let parameter = '';
+                if (elements) {
+                    categoryElements = JSON.parse(elements);
+                    elementKeys = Object.keys(categoryElements);
+                    parameter = `?categories=${elementKeys}&data=${categoryElements[elementKeys[0]]}`;
+                }
+                window.location.href = `https://upg.uz/en/compare${parameter}#`;
+            });
+
+        });
+        $(document).ready(function () {
+            $('#openModal').click(function (e) {
+                e.preventDefault();
+                $('#modal').show();
+            });
+            $('#closeModal').click(function (e) {
+                e.preventDefault();
+                $('#modal').hide();
+            });
+            $('.close-modal-logout').click(function (e) {
+                e.preventDefault();
+                $('#modal').hide();
+            });
+        })
+
+    </script>
+    <div class="container">
+        <div class="row row-logo">
+            <div class="col-lg-16 col-md-17 col-sm-30 col-xs-60 text-center logo-link">
+                <a href="/" class="" style="display: block;">
+                    <img class="img-responsive img-logo centered" src="https://upg.uz/images/image/upgLogo.png"
+                         alt="" width="100%" height="100%" />
+                </a>
+            </div>
+            <div class="col-lg-21 col-md-22 col-sm-30 col-xs-60 col-head-box">
+                <div class="marker-box" style="line-height: 0">
+                    <a href="/contact">Расположение Улица Наваи 37</a><br>
+                    <a href="/contact" style="line-height: 10px;">Расположение Трц. Малика магазин Б-24</a>
+
+                    <span class="header-msub1">
+                        Режим работы: ПН, ВТ, СР, ЧТ, СБ, ВС | с 10:00 - 20:00
+                        <br>
+                        Выходной: ПТ
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-23 col-md-21 col-sm-60 col-xs-60 col-head-box">
+                <div class="phone-box">
+                    <div class="phone-item">
+                        <span><a href="tel:+998991242424" style="text-decoration:none">(99) 124-24-24</a></span>
+                        <span class="header-msub2">(ул. Навои 37)</span>
                     </div>
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-success btn-custom">Найти</button>
-                    </div><!-- /btn-group -->
-                </form><!-- /input-group -->
+                    <div class="phone-item">
+                        <span><a href="tel:+998971242424" style="text-decoration:none">(97) 124-24-24</a></span>
+                        <span class="header-msub2">(Трц. Малика B24)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-search">
+            <div class="col-lg-15 col-md-15 col-sm-20 col-xs-60 col-menu">
+                <div class="row">
+                    <div class="col-xs-60 hide-menu">
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-btn">
+                                <button class="btn btn-success btn-custom btn-custom-1"
+                                        id="btn-hide-menu">
+                                    Каталог<span class="menu-arrow-down"
+                                                 id="btn-hide-menu-arrow"></span>
+                                </button>
+                                <ul class="mn-vnavigation" id="top-navigation" style="display: none;">
 
-            </div><!-- /.col-xs-12 -->
-        </div><!-- /.row -->
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Sborka"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="~/images/Category_images/Sborka.png">
+                                            Игровые Сборки
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Laptops"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="~/images/Category_images/Laptops.png">
+                                            Ноутбуки
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Keyboards"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="~/images/Category_images/keyboards.png">
+                                            Клавиатуры
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Mouses"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/1/original/ClVCWXWlYzbSJfe9ntj0idV1TDx377oHx86ScpDE.png">
+                                            Мышки
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Headphones"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/5/original/d9I688kCoxpZ2mlRhxKFYFxlnHi7IrtiKeo1BBOQ.png">
+                                            Наушники
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Microfones"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/4/original/xlHL5OX68DV7E5dceXXY9aRCDDpK0iq3GLc250bR.png">
+                                            Микрофоны
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="MousePads"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/7/original/EN2FfWb0AyLw3u4EEaxC4YLPMZboJmmYG1mOfpN0.jpg">
+                                            Коврики для мыши
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Acsessories"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/8/original/VadcrJsqiLz8kLU6QXd3NrIWz9skO9HqWzAmv2gz.png">
+                                            Аксессуары
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Decor"
+                                            class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/48/original/I7RUBYI5SRCYQ74Tcdmvl9eOkjYJbNXaOQC70pzC.png">
+                                            Декор
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Kits"
+                                            class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/10/original/xoR1asP3svzpJkHjzt0ak1c8YJFZdbqeo5EeSylu.png">
+                                            Комплекты
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Monitors"
+                                            class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/16/original/zqinDL2blKzyi1hKHZc7bjaa47wWaBTX5weF37Nu.png">
+                                            Мониторы
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1"
+                                           asp-controller="Home" asp-action="SSDorHDD"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/23/original/ekFcdz4ptTSEI7WHAUCnRQDji9hI1KYPt42uRIAh.png">
+                                            Накопители
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="RAM"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/24/original/PPnmwAwixtZlWMzILfqOo8aVXFxkwDUlP8gi6Rez.png">
+                                            ОЗУ
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="UPS"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/49/original/ZxAm4LRIFFQq2kALK03yLK0Zs4JKDkyDr0zTyx0r.png">
+                                            UPS
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="PowerSupplies"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/47/original/nvB5YiCzARiogKii62ozj9JT2FRmUrZdsFZIalg5.png">
+                                            Блоки питания
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Colons"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/13/original/xgQKYM19GYo0bZxcZcosGIGIrrsEKhuoyvKDmWhu.png">
+                                            Колонки
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="WebCam"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/12/original/vHTy1p93afSz7YWwEtVQcocnhJ9O91Gn7M7EYBPe.png">
+                                            Веб-Камеры
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="AppleProducts"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/46/original/YDLt8UdjcWcp56OYjx3JOKEIqTtXD3xD6fiAqooY.png">
+                                            Продукция Apple
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="GamingConsoles"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/26/original/pWPl4NOSA8IqeWOGdyAOkyebkXVV3JwbGIhoDlu6.png">
+                                            Игровые консоли
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1"
+                                           asp-controller="Home" asp-action="Gamepads"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/11/original/KJ87wGwc922s2bvKiUFUF0EtKYSgp6TytQsYnYTK.png">
+                                            Игровые геймпады
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Glasses"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/9/original/jHBuspaT1OZfpnUhEZdBfSGFxgsH1bWBYH502JJV.png">
+                                            Очки для геймеров
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="WiFiRouter"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/17/original/XQGWDdWvqxKY72v68oAP32w8fl8WMByzXeMqFi5y.png">
+                                            Wi-Fi Роутеры
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Kronshteyns"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/25/original/mXILQW2LGkZCubFAvUSuLPE9kDyrasOnmI9V0ILU.png">
+                                            Кронштейны
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Coolers"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/22/original/w9vLhnGIpo1rLTu8Mdy0bYDXCEVo1InT1WoD8phI.png">
+                                            Кулера
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Cases"
+                                           class="parent">
+                                            <img class="catalog-icon" 
+                                                 src=" https://upg.uz/storage/files/categories/19/original/ndp71MvfsLPxnbmhq0SS4qWDSfkcaIu0GZCb1s1t.png">
+                                            Корпуса
+                                        </a>
+
+                                    </li>-icon"
+                                                 
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Armchairs"
+                                           class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/14/original/w0QtYaEkocyKm7R9zaTZi24FaVBiIU2ii495WaWs.png">
+                                            Кресла
+                                        </a>
+
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" asp-controller="Home" asp-action="Tables" class="parent">
+                                            <img class="catalog-icon"
+                                                 src="https://upg.uz/storage/files/categories/27/original/caZDCrvFxGauDtr93yF8nSgi19pGpiUTEZyhtU34.png">
+                                            Столы для геймеров
+                                        </a>
+
+                                    </li>
+
+                                </ul>
+                            </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-xs-12 -->
+                </div>
+            </div>
+            <div class="col-lg-45 col-md-45 col-sm-40 col-xs-60" style="margin-top: 15px">
+                <div class="row">
+                    <div class="col-xs-60">
+                        <form action="/search" class="input-group input-group-lg" id="search-form" method="GET">
+                            <input type="text" name="name" value="" class="form-control search-input"
+                                   placeholder="Найти, например, HyperX Cloud Alpha" id="search-input"
+                                   autocomplete="off" />
+                            <div class="dropdown-menu" style="top: 40px; left: 0px; display: none;" id="droping">
+                            </div>
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-success btn-custom">Найти</button>
+                            </div><!-- /btn-group -->
+                        </form><!-- /input-group -->
+
+                    </div><!-- /.col-xs-12 -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+
+        <script>
+            $('#btn-hide-menu').click(function (e) {
+                e.preventDefault();
+                $('#top-navigation').toggle();
+            })
+            $('.menu-arrow').click(function (e) {
+                e.stopPropagation();
+                let element = $(this);
+                $('.dropdown-menu').hide()
+                element.siblings('.dropdown-menu').toggle();
+            });
+            $('.dropdown-menu').click(function (e) {
+                e.stopPropagation();
+            })
+            $(document).click(function (e) {
+                $('.dropdown-menu').hide()
+                console.log('clicking')
+            })
+            $('.item-carousel-id').click(function (e) {
+                e.stopPropagation();
+            })
+        </script>
     </div>
-</div>
-<script>
-    $('#btn-hide-menu').click(function (e) {
-        e.preventDefault();
-        $('#top-navigation').toggle();
-    })
-    $('.menu-arrow').click(function (e) {
-        e.stopPropagation();
-        let element = $(this);
-        $('.dropdown-menu').hide()
-        element.siblings('.dropdown-menu').toggle();
-    });
-    $('.dropdown-menu').click(function (e) {
-        e.stopPropagation();
-    })
-    $(document).click(function (e) {
-        $('.dropdown-menu').hide()
-        console.log('clicking')
-    })
-    $('.item-carousel-id').click(function (e) {
-        e.stopPropagation();
-    })
-</script>
+</header>

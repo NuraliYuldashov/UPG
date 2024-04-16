@@ -3,7 +3,8 @@
 namespace Application.Interfaces;
 public interface IUploadImageService
 {
-    Task<string> UploadAsync(IFormFile file, string folderName, string domain);
-    //Task DeleteAsync(RemoveImageDto dto, string folderName);
-    Task<bool> DeleteAsync(string url, string folderName);
+    Task<string> UploadAsync(IFormFile file);
+    Task<bool> DeleteAsync(string url);
+    Task<IEnumerable<string>> UploadAsync(List<IFormFile> files);
+    Task DeleteAsync(List<string> urls);
 }
