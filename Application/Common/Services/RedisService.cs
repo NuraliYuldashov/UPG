@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using System.Text.Json;
 
 namespace Application.Common.Services;
 

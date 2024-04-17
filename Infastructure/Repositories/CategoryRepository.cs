@@ -12,12 +12,14 @@ namespace Infastructure.Repositories
         public void Add(Category category)
         {
             _dbContext.Categories.Add(category);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var category = _dbContext.Categories.AsNoTracking().FirstOrDefault(c => c.Id == id);
             _dbContext.Categories.Remove(category!);
+            _dbContext.SaveChanges();
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()
@@ -33,6 +35,7 @@ namespace Infastructure.Repositories
         public void Update(Category category)
         {
             _dbContext.Categories.Update(category);
+            _dbContext.SaveChanges();
         }
     }
 }

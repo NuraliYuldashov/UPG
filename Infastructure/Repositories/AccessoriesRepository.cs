@@ -37,7 +37,7 @@ public class AccessoriesRepository(AppDBContext dbContext) : Repository<Accessor
     {
         var query = _dbContext.Accessories
             .Include(a => a.Category) 
-            .Where(a => a.Category.Name == categoryName) 
+            .Where(a => a.Category.Name.ToLower() == categoryName.ToLower()) 
             .AsQueryable();
 
         if (!string.IsNullOrEmpty(filter.brand))
@@ -55,7 +55,7 @@ public class AccessoriesRepository(AppDBContext dbContext) : Repository<Accessor
         return await query.ToListAsync();
     }
 
-    public async Task<List<Accessories>> GetAccessoriesByCategoryAsync(int categoryId)
+    public async Task<List<Accessories>> GetAccessoriesByCategoryIdAsync(int categoryId)
     {
         return await _dbContext.Accessories
             .Include(a => a.Category)
@@ -67,7 +67,7 @@ public class AccessoriesRepository(AppDBContext dbContext) : Repository<Accessor
     {
         return await _dbContext.Accessories
             .Include(a => a.Category)
-            .Where(a => a.Category.Name == categoryName)
+            .Where(a => a.Category.Name.ToLower() == categoryName.ToLower())
             .ToListAsync();
     }
 

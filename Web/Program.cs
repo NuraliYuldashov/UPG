@@ -107,6 +107,7 @@ builder.Services.AddCors(options =>
 #region Application Services
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<ICategory, CategoryRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<MousePadsInterface, MousePadsRepository>();
 builder.Services.AddTransient<PowerSuppliesInterface,PowerSuppliesRepository>();
@@ -121,7 +122,7 @@ builder.Services.AddTransient<IAccessoriesService, AccessoriesService>();
 builder.Services.AddTransient<ITablesForGamersService, TablesForGamersService>();
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 
-
+builder.Services.AddTransient<ICategoryInterface, CategoryService>();
 builder.Services.AddTransient<IArmchairsService,ArmchairsService>();
 builder.Services.AddTransient<ICoolerService,CoolerService>();
 builder.Services.AddTransient<IDrivesService,DrivesService>();

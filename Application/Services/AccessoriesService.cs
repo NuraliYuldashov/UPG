@@ -2,7 +2,6 @@
 using Application.Common.Interfaces;
 using Application.Common.Services;
 using Application.Common.Validators.AccessoriesValidators;
-using Application.Helpers;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -11,11 +10,6 @@ using Infastructure.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UPG.Core.Filters;
 
 namespace Application.Services;
@@ -24,16 +18,19 @@ public class AccessoriesService : IAccessoriesService
 {
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IS3Interface _s3Interface;
+    private readonly IUploadImageService _uploadImage;
     private readonly IDistributedCache _distributed;
     private const string CACHE_KEY = "accessory";
     private readonly IRedisService<Accessories> _cache;
 
-    public AccessoriesService(IMapper mapper, IUnitOfWork unitOfWork, IS3Interface s3Interface, IDistributedCache distributed)
+    public AccessoriesService(IMapper mapper, 
+                              IUnitOfWork unitOfWork, 
+                              IUploadImageService uploadImage, 
+                              IDistributedCache distributed)
     {
         _mapper = mapper;
         _unitOfWork = unitOfWork;
-        _s3Interface = s3Interface;
+        _uploadImage = uploadImage;
         _distributed = distributed;
         _cache = new RedisService<Accessories>(distributed);
 }
@@ -60,22 +57,12 @@ public class AccessoriesService : IAccessoriesService
         var accessory = await _unitOfWork.Accessories.GetByIdAsync(id);
         if (accessory == null) throw new NotFoundException("Accessory not found!");
 
-        var images = accessory.ImageUrls.ToList();
-        foreach (var image in images)
-        {
-            await _s3Interface.DeleteFileAsync(image.Split('/')[^1]);
-        }
+        var images = accessory.ImageUrls;
+        await _uploadImage.DeleteAsync(images);
         _unitOfWork.Accessories.Delete(id);
         await _unitOfWork.SaveAsync();
         _distributed.Remove(CACHE_KEY);
     
-    }
-
-
-    public async Task<List<AccessoriesDto>> FilterAsync(AccessoriesFilter accessoriesFilter)
-    {
-        var accessories = await _unitOfWork.Accessories.GetFilteredAccessoriesAsync(accessoriesFilter);
-        return accessories.Select(i => _mapper.Map<AccessoriesDto>(i)).ToList();
     }
 
     public async Task<IEnumerable<AccessoriesDto>> GetAccessoriesAsync()
@@ -124,15 +111,36 @@ public class AccessoriesService : IAccessoriesService
             throw new ResponseErrors() { Errors = validatorResult.Errors.ToList() };
         }
 
-        var forDelete = accessory.ImageUrls.Except(updateAccessoriesDto.ImageUrls);
+        var images = accessory.ImageUrls.Except(updateAccessoriesDto.ImageUrls).ToList();
 
-        foreach (var imageUrl in forDelete)
-        {
-            await _s3Interface.DeleteFileAsync(imageUrl.Split('/')[^1]);
-        }
+        await _uploadImage.DeleteAsync(images);
         var upaccessuary = _mapper.Map<Accessories>(updateAccessoriesDto);
         _unitOfWork.Accessories.Update(upaccessuary);
         await _unitOfWork.SaveAsync();
         _distributed.Remove(CACHE_KEY);
+    }
+
+    public async Task<IEnumerable<AccessoriesDto>> GetAllAccessoriesByCategoryIdAsync(int categoryId)
+    {
+        var models = await _unitOfWork.Accessories.GetAccessoriesByCategoryIdAsync(categoryId);
+        return _mapper.Map<IEnumerable<AccessoriesDto>>(models);   
+    }
+
+    public async Task<IEnumerable<AccessoriesDto>> GetAllAccessoriesByCategoryNameAsync(string categoryName)
+    {
+        var models = await _unitOfWork.Accessories.GetAccessoriesByCategoryNameAsync(categoryName);
+        return _mapper.Map<IEnumerable<AccessoriesDto>>(models);
+    }
+
+    public async Task<List<AccessoriesDto>> FilterByCategoryNameAsync(string categoryName, AccessoriesFilter accessoriesFilter)
+    {
+        var models = await _unitOfWork.Accessories.GetFilteredAccessoriesByCategoryNameAsync(categoryName, accessoriesFilter);
+        return _mapper.Map<List<AccessoriesDto>>(models);
+    }
+
+    public async Task<List<AccessoriesDto>> FilterByCategoryIdAsync(int id, AccessoriesFilter accessoriesFilter)
+    {
+        var accessories = await _unitOfWork.Accessories.GetFilteredAccessoriesByCategoryIdAsync(id, accessoriesFilter);
+        return _mapper.Map<List<AccessoriesDto>>(accessories);
     }
 }

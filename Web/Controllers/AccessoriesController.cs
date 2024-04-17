@@ -87,11 +87,11 @@ public class AccessoriesController : ControllerBase
     }
 
     [HttpGet("with-filter")]
-    public async Task<IActionResult> GetByFilterAsync([FromQuery] AccessoriesFilter filter)
+    public async Task<IActionResult> GetByFilterAsync([FromQuery] int categoryId, AccessoriesFilter filter)
     {
         try
         {
-            var accessories = await _accessoriesService.FilterAsync(filter);
+            var accessories = await _accessoriesService.FilterByCategoryIdAsync(categoryId, filter);
             return Ok(accessories);
         }
         catch (Exception ex)
