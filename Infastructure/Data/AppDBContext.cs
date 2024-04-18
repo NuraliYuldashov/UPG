@@ -8,7 +8,7 @@ public class AppDBContext : IdentityDbContext<ApplicationUser>
 {
     public AppDBContext(DbContextOptions<AppDBContext> dbContextOptions) : base(dbContextOptions)
     {
-        Database.EnsureCreated();
+        //Database.EnsureCreated();
     }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Accessories> Accessories { get; set; }
@@ -33,4 +33,10 @@ public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(modelBuilder);
     }
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.UseSqlServer(connectionString,
+    //        options => options.MigrationsAssembly("Infastructure"));
+    //}
+
 }

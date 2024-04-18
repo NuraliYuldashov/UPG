@@ -1,11 +1,7 @@
 ﻿using Application.Common.Exceptions;
-using Application.Helpers;
 using Application.Interfaces;
-using Application.Services;
 using DTOS.AccessoriesDtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using UPG.Core.Filters;
 
 namespace Web.Controllers;
@@ -22,7 +18,7 @@ public class AccessoriesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> GetAll()
     {
         var categories = await _accessoriesService.GetAccessoriesAsync();
         return Ok(categories);
@@ -86,8 +82,8 @@ public class AccessoriesController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("with-filter")]
-    public async Task<IActionResult> GetByFilterAsync([FromQuery] int categoryId, AccessoriesFilter filter)
+    [HttpGet("FilterByCategoryIdAsync")]
+    public async Task<IActionResult> FilterByCategoryIdAsync([FromQuery] int categoryId, AccessoriesFilter filter)
     {
         try
         {
@@ -99,4 +95,45 @@ public class AccessoriesController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
+    [HttpGet("FilterByCategoryNameAsync")]
+    public async Task<IActionResult> FilterByCategoryNameAsync([FromQuery] string categoryName, AccessoriesFilter filter)
+    {
+        try
+        {
+            var accessories = await _accessoriesService.FilterByCategoryNameAsync(categoryName, filter);
+            return Ok(accessories);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+    [HttpGet("byCategoryId")]
+    public async Task<IActionResult> GetAllAccessoriesByCategoryIdAsync([FromQuery] int categoryId)
+    {
+        try
+        {
+            var accessories = await _accessoriesService.GetAllAccessoriesByCategoryIdAsync(categoryId);
+            return Ok(accessories);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+    [HttpGet("byCategoryName")]
+    public async Task<IActionResult> GetAllAccessoriesByCategoryNameAsync([FromQuery] string categoryName)
+    {
+        try
+        {
+            var accessories = await _accessoriesService.GetAllAccessoriesByCategoryNameAsync(categoryName);
+            return Ok(accessories);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
 }

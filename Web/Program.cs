@@ -20,9 +20,12 @@ using Web.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 # region DbContext
+//builder.Services.AddDbContext<AppDBContext>(options =>
+//    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")),
 
 builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")),
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"),
+        b => b.MigrationsAssembly("Web")), // Specify the assembly name here
     ServiceLifetime.Transient);
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
