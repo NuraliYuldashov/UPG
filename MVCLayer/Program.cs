@@ -139,6 +139,7 @@ builder.Services.AddTransient<IKeyboardService, KeyboardService>();
 builder.Services.AddTransient<ILaptopService, LaptopService>();
 builder.Services.AddScoped<IS3Interface, S3Service>();
 
+builder.Services.AddTransient<IUploadImageService, UploadImageService>();
 #endregion
 
 

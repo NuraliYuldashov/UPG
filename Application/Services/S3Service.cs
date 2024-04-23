@@ -44,24 +44,8 @@ public class S3Service(IAmazonS3 s3Client,
 
     public async Task<Stream> GetFileUrlAsync(string fileName)
     {
-        var urlRequest = new GetPreSignedUrlRequest
-        {
-            BucketName = bucketName,
-            Key = fileName,
-            Expires = DateTime.Now.AddMinutes(5)
-        };
 
-        var fileUrl = s3Client.GetPreSignedURL(urlRequest);
-        HttpClient httpClient = new();
-
-        var response = await httpClient.GetAsync(fileUrl);
-
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new ArgumentNullException("File not found");
-        }
-
-        return response.Content.ReadAsStream();
+        return null!;
     }
 
     public async Task DeleteFileAsync(string fileName)
